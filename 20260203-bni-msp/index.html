@@ -125,6 +125,81 @@
             font-size: 15px;
         }
 
+        /* 介紹區塊 */
+        .intro-section {
+            margin-bottom: 40px;
+        }
+
+        .intro-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 32px;
+        }
+
+        .intro-card h3 {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .intro-card p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+
+        .intro-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .why-list {
+            list-style: none;
+            padding: 0;
+            margin: 16px 0 0;
+        }
+
+        .why-list li {
+            padding: 12px 16px;
+            background: var(--bg);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-size: 15px;
+            line-height: 1.6;
+            border-left: 3px solid var(--accent);
+        }
+
+        .why-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .why-list li strong {
+            color: var(--primary);
+        }
+
+        .welcome-highlight {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--white);
+            border-radius: var(--radius);
+            padding: 32px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .welcome-highlight h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: var(--white);
+        }
+
+        .welcome-highlight p {
+            opacity: 0.9;
+            font-size: 15px;
+            color: var(--white);
+        }
+
         /* 表單區塊 */
         .form-section {
             margin-bottom: 40px;
@@ -464,6 +539,28 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 歡迎與介紹 -->
+    <section class="intro-section">
+        <div class="container">
+            <div class="welcome-highlight">
+                <h3>2026，歡迎加入華字輩大家庭！</h3>
+                <p>華日、華市集、華影視 — 我們一起學習、一起成長、一起引薦更多商機</p>
+            </div>
+
+            <div class="intro-card">
+                <h3>為什麼 MSP 培訓這麼重要？</h3>
+                <p>MSP（Member Success Program）是 BNI 專為會員設計的成功計畫。很多夥伴加入 BNI 後，還不太清楚怎麼有效地運用這個平台。MSP 初階培訓就是幫你打好基礎，讓你從第一天就走對方向。</p>
+                <ul class="why-list">
+                    <li><strong>搞懂 BNI 的核心運作</strong> — 了解引薦流程、一對一、商業計畫等關鍵環節，不再霧裡看花</li>
+                    <li><strong>快速建立信任</strong> — 學會如何讓分會夥伴更認識你的專業，讓引薦自然發生</li>
+                    <li><strong>提升引薦品質與數量</strong> — 掌握給出好引薦的技巧，你給得多、收得也多</li>
+                    <li><strong>避免常見的新會員誤區</strong> — 少走彎路，直接用對的方法經營你的 BNI 之路</li>
+                    <li><strong>投資 2.5 小時，回報一整年</strong> — 這堂課學到的方法，會讓你在未來每一次會議都更有收穫</li>
+                </ul>
             </div>
         </div>
     </section>
