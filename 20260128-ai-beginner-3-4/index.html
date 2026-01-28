@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 初階課程 第 3-4 堂 | 課後複習網站</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">AI 初階課程</span>
+                <span class="logo-badge">第 3-4 堂</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#recap">課程回顧</a></li>
+                <li><a href="#tools">工具總覽</a></li>
+                <li><a href="#morning">上半場</a></li>
+                <li><a href="#afternoon">下半場</a></li>
+                <li><a href="#resources">課後資源</a></li>
+                <li><a href="#action">行動計劃</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg-pattern"></div>
+        <div class="hero-container">
+            <div class="hero-badge">
+                <span class="badge-icon">★</span>
+                <span>12 小時系列課程 - 課後複習網站</span>
+            </div>
+            <h1 class="hero-title">
+                AI 初階課程<br>
+                <span class="gradient-text">第 3-4 堂 課後複習</span>
+            </h1>
+            <p class="hero-subtitle">
+                NotebookLM 深度應用 × AI 圖像創作 × 動態影像生成<br>
+                從會議記錄到視覺創作，全面提升 AI 實戰能力
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">6</span>
+                    <span class="stat-label">個 AI 工具</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number">5+</span>
+                    <span class="stat-label">實作練習</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number">3hr</span>
+                    <span class="stat-label">課程時數</span>
+                </div>
+            </div>
+            <div class="hero-info">
+                <div class="info-item">
+                    <span class="info-icon">📅</span>
+                    <span>2026 年 1 月 28 日</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon">👨‍🏫</span>
+                    <span>講師：阿峰老師（AI 峰哥）</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Concept -->
+    <section id="recap" class="core-concept">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">核心觀念</span>
+                <h2 class="section-title">你是機長，AI 是機組人員</h2>
+                <p class="section-desc">方向與責任在你，AI 負責加速與輔助</p>
+            </div>
+            <div class="concept-grid">
+                <div class="concept-card warning">
+                    <div class="concept-icon">⚠️</div>
+                    <h3>大型語言模型會「一本正經的胡說八道」</h3>
+                    <p>ChatGPT、Gemini、Grok 都是大型語言模型（LLM），它們可能會產生錯誤資訊但說得非常有說服力。</p>
+                    <ul>
+                        <li>不知道答案的，不要用 LLM</li>
+                        <li>不確定答案的，不要用 LLM</li>
+                        <li>不想驗證答案的，不要用 LLM</li>
+                    </ul>
+                </div>
+                <div class="concept-card success">
+                    <div class="concept-icon">✅</div>
+                    <h3>選擇有資料來源的 AI</h3>
+                    <p>Perplexity 等搜尋型 AI 會提供資料來源，讓你可以驗證資訊的正確性。</p>
+                    <ul>
+                        <li>有來源 = 可以驗證</li>
+                        <li>評估來源的可信度</li>
+                        <li>官方網站 > 維基百科 > 不知名網站</li>
+                    </ul>
+                </div>
+                <div class="concept-card info">
+                    <div class="concept-icon">🔄</div>
+                    <h3>AI 工作流程</h3>
+                    <p>不要一個人打天下，搭配不同 AI 工具來完成任務。</p>
+                    <ul>
+                        <li>步驟 1：你下指令</li>
+                        <li>步驟 2-6：AI 執行</li>
+                        <li>步驟 7：你確認結果</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Overview -->
+    <section id="tools" class="tools">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">工具總覽</span>
+                <h2 class="section-title">本堂課使用的 AI 工具</h2>
+            </div>
+            <div class="tools-grid">
+                <a href="https://notebooklm.google.com/" target="_blank" class="tool-card">
+                    <div class="tool-logo">📓</div>
+                    <h3>NotebookLM</h3>
+                    <p>筆記本語言模型，上傳你的資料後進行分析、問答、產出簡報</p>
+                    <span class="tool-use">會議記錄、資料分析、簡報生成</span>
+                </a>
+                <a href="https://gemini.google.com/" target="_blank" class="tool-card">
+                    <div class="tool-logo">✨</div>
+                    <h3>Gemini + Canvas</h3>
+                    <p>Google AI，Canvas 功能可對話式製作簡報與寫程式</p>
+                    <span class="tool-use">簡報製作、程式開發</span>
+                </a>
+                <a href="https://www.perplexity.ai/" target="_blank" class="tool-card">
+                    <div class="tool-logo">🔍</div>
+                    <h3>Perplexity</h3>
+                    <p>AI 搜尋引擎，回答附帶資料來源</p>
+                    <span class="tool-use">資料查詢、事實查核</span>
+                </a>
+                <a href="https://manus.im/" target="_blank" class="tool-card">
+                    <div class="tool-logo">🤖</div>
+                    <h3>Manus</h3>
+                    <p>AI Agent 自動化平台，可自動上網搜尋並製作簡報</p>
+                    <span class="tool-use">自動化簡報</span>
+                </a>
+                <a href="https://ideogram.ai/" target="_blank" class="tool-card">
+                    <div class="tool-logo">🍌</div>
+                    <h3>IDEOGRAM (Noi banana)</h3>
+                    <p>AI 圖像生成工具，Pro 版支援精準中文字</p>
+                    <span class="tool-use">圖像創作、行銷素材</span>
+                </a>
+                <a href="https://x.ai/grok" target="_blank" class="tool-card">
+                    <div class="tool-logo">🎬</div>
+                    <h3>Grok (X AI)</h3>
+                    <p>讓靜態圖片動起來，完全免費</p>
+                    <span class="tool-use">動態影像生成</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Morning Session -->
+    <section id="morning" class="curriculum morning">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">🌅 上半場</span>
+                <h2 class="section-title">NotebookLM 深度應用 + AI 簡報製作</h2>
+            </div>
+
+            <div class="curriculum-card-simple">
+                <span class="time-badge">單元 1</span>
+                <div class="card-main">
+                    <h4>NotebookLM 核心功能</h4>
+                    <ul>
+                        <li><strong>筆記本語言模型</strong>：資料來源是「你給它的資料」，不是網路上的所有資料</li>
+                        <li><strong>優點</strong>：不會亂掰，只根據你提供的資料回答</li>
+                        <li><strong>缺點</strong>：你要它掰也比較難（例如寫行銷文案）</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="curriculum-card-simple">
+                <span class="time-badge">單元 2</span>
+                <div class="card-main">
+                    <h4>NotebookLM 資料上傳方式</h4>
+                    <ul>
+                        <li><strong>上傳檔案</strong>：支援 PDF、Word、文字檔（不支援 Excel、PPT）</li>
+                        <li><strong>網站/網頁</strong>：注意是「網頁」不是「網站」，要比較多個產品就要上傳多個網頁</li>
+                        <li><strong>YouTube</strong>：可上傳 YouTube 影片連結</li>
+                        <li><strong>Google 雲端硬碟</strong>：可直接連接雲端檔案，修改會同步更新</li>
+                        <li><strong>Deep Research</strong>：整合 Gemini 的深度研究功能</li>
+                    </ul>
+                    <div class="tip-box">
+                        <strong>小技巧：</strong>Excel/PPT 怎麼上傳？
+                        <ul>
+                            <li>轉成 PDF 上傳</li>
+                            <li>上傳到 Google 雲端，再從雲端硬碟連接</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="curriculum-card-simple">
+                <span class="time-badge">單元 3</span>
+                <div class="card-main">
+                    <h4>NotebookLM 實用功能</h4>
+                    <ul>
+                        <li><strong>儲存至記事</strong>：把重要的對話內容儲存起來，不怕對話太多找不到</li>
+                        <li><strong>生成簡報</strong>：一鍵把資料整理成簡報</li>
+                        <li><strong>心智圖</strong>：自動產出心智圖</li>
+                        <li><strong>表格整理</strong>：請它用表格比較不同資料</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="curriculum-card-simple">
+                <span class="time-badge">單元 4</span>
+                <div class="card-main">
+                    <h4>AI 做簡報的三種方式</h4>
+                    <ul>
+                        <li><strong>Manus</strong>：最漂亮、可修改、可上網搜尋資料、費用約 40-50 元/份</li>
+                        <li><strong>Gemini Canvas</strong>：打開 Canvas 功能，下指令「請你幫我把以上內容製作成 Google Slide，並且是可以下載那種」</li>
+                        <li><strong>NotebookLM</strong>：按「生成簡報」按鈕，從你的資料自動產出</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Afternoon Session -->
+    <section id="afternoon" class="curriculum afternoon">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">☀️ 下半場</span>
+                <h2 class="section-title">AI 圖像創作 + 動態影像生成</h2>
+            </div>
+
+            <div class="curriculum-card-simple">
+                <span class="time-badge">單元 5</span>
+                <div class="card-main">
+                    <h4>Gemini Canvas 程式開發</h4>
+                    <ul>
+                        <li>Canvas 讓 Gemini 擁有寫程式語言的能力</li>
+                        <li>可以做出開發票系統、小遊戲等實用工具</li>
+                        <li>AI 做的是「網頁」，如果要上線需要工程師協助建置後端</li>
+                        <li>用 AI 做出原型（Prototype），再跟專業人員溝通更有效率</li>
+                    </ul>
+                    <div class="tip-box">
+                        <strong>未來工作形態改變：</strong>
+                        <ul>
+                            <li>以前：步驟 1-7 全部自己做</li>
+                            <li>現在：步驟 1（下指令）+ 步驟 2-6（AI 執行）+ 步驟 7（確認結果）</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="curriculum-card-simple">
+                <span class="time-badge">單元 6</span>
+                <div class="card-main">
+                    <h4>IDEOGRAM (Noi banana) AI 圖像創作</h4>
+                    <ul>
+                        <li><strong>使用位置</strong>：Gemini 的「生成圖片」按鈕（有香蕉圖示）或 Flow</li>
+                        <li><strong>無中生有</strong>：直接描述想要的圖片，AI 幫你生成</li>
+                        <li><strong>圖片改造</strong>：上傳照片 + 描述修改方向</li>
+                        <li><strong>人物合成</strong>：上傳多張照片進行合成</li>
+                        <li><strong>中文字</strong>：需要 Pro 版才能精準顯示中文字</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="curriculum-card-simple">
+                <span class="time-badge">單元 7</span>
+                <div class="card-main">
+                    <h4>IDEOGRAM 應用案例</h4>
+                    <div class="use-cases">
+                        <div class="use-case">
+                            <span class="case-icon">👔</span>
+                            <div>
+                                <strong>業務沙龍照</strong>
+                                <p>用 AI 生成專業照片，省下每人 3-4 千元拍照費用</p>
+                            </div>
+                        </div>
+                        <div class="use-case">
+                            <span class="case-icon">👗</span>
+                            <div>
+                                <strong>穿搭試衣</strong>
+                                <p>上傳自己照片 + 服裝圖片，看穿起來的效果</p>
+                            </div>
+                        </div>
+                        <div class="use-case">
+                            <span class="case-icon">💇</span>
+                            <div>
+                                <strong>髮型預覽</strong>
+                                <p>沙龍業者可以讓客戶先看燙髮捲髮後的樣子</p>
+                            </div>
+                        </div>
+                        <div class="use-case">
+                            <span class="case-icon">🎨</span>
+                            <div>
+                                <strong>風格轉換</strong>
+                                <p>把照片變成線條稿，印出來給小朋友著色</p>
+                            </div>
+                        </div>
+                        <div class="use-case">
+                            <span class="case-icon">🗑️</span>
+                            <div>
+                                <strong>人物移除</strong>
+                                <p>把照片中不要的人物移除（F4 變 F3 範例）</p>
+                            </div>
+                        </div>
+                        <div class="use-case">
+                            <span class="case-icon">😊</span>
+                            <div>
+                                <strong>表情變換</strong>
+                                <p>讓照片中的人笑得更開心</p>
+                            </div>
+                        </div>
+                        <div class="use-case">
+                            <span class="case-icon">🏖️</span>
+                            <div>
+                                <strong>背景變更</strong>
+                                <p>一秒去海邊、去滑雪、去任何地方</p>
+                            </div>
+                        </div>
+                        <div class="use-case">
+                            <span class="case-icon">🤸</span>
+                            <div>
+                                <strong>動作指定</strong>
+                                <p>先用 AI 生成動作剪影，再讓照片中的人做同樣動作</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="curriculum-card-simple">
+                <span class="time-badge">單元 8</span>
+                <div class="card-main">
+                    <h4>Grok 動態影像生成</h4>
+                    <ul>
+                        <li><strong>完全免費</strong>：目前找不到有人用到額度上限</li>
+                        <li><strong>讓照片動起來</strong>：上傳靜態圖片，AI 讓它動起來</li>
+                        <li><strong>時長</strong>：約 4-8 秒</li>
+                        <li><strong>適合場景</strong>：社群貼文、廣告素材、回憶製作</li>
+                    </ul>
+                    <div class="tip-box">
+                        <strong>小技巧：</strong>真人動態容易變形
+                        <ul>
+                            <li>先用 AI 把照片變成 Q 版</li>
+                            <li>再用 Grok 讓 Q 版照片動起來</li>
+                            <li>Q 版就沒有「像不像」的問題</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="curriculum-card-simple">
+                <span class="time-badge">單元 9</span>
+                <div class="card-main">
+                    <h4>Grok 應用案例</h4>
+                    <div class="use-cases">
+                        <div class="use-case">
+                            <span class="case-icon">👨‍👩‍👧</span>
+                            <div>
+                                <strong>家人回憶</strong>
+                                <p>讓過世家人的照片動起來，製作溫馨回憶</p>
+                            </div>
+                        </div>
+                        <div class="use-case">
+                            <span class="case-icon">🐱</span>
+                            <div>
+                                <strong>寵物紀念</strong>
+                                <p>讓寵物的照片動起來，留下美好回憶</p>
+                            </div>
+                        </div>
+                        <div class="use-case">
+                            <span class="case-icon">📢</span>
+                            <div>
+                                <strong>社群行銷</strong>
+                                <p>FB 廣告動態比靜態效果更好</p>
+                            </div>
+                        </div>
+                        <div class="use-case">
+                            <span class="case-icon">🎊</span>
+                            <div>
+                                <strong>節慶祝福</strong>
+                                <p>冬至吃湯圓、聖誕節、新年祝福動態</p>
+                            </div>
+                        </div>
+                        <div class="use-case">
+                            <span class="case-icon">🚭</span>
+                            <div>
+                                <strong>公衛宣導</strong>
+                                <p>吸菸吸到中風的警示動畫</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="resources">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">課後資源</span>
+                <h2 class="section-title">工具連結一次給你</h2>
+            </div>
+            <div class="resources-grid">
+                <div class="resource-category">
+                    <h3>📊 文書與分析</h3>
+                    <ul>
+                        <li><a href="https://notebooklm.google.com/" target="_blank">NotebookLM</a> - 筆記本語言模型</li>
+                        <li><a href="https://gemini.google.com/" target="_blank">Gemini</a> - Google AI + Canvas</li>
+                        <li><a href="https://www.perplexity.ai/" target="_blank">Perplexity</a> - AI 搜尋引擎</li>
+                        <li><a href="https://manus.im/" target="_blank">Manus</a> - AI Agent 自動化</li>
+                    </ul>
+                </div>
+                <div class="resource-category">
+                    <h3>🎨 圖像與影片</h3>
+                    <ul>
+                        <li><a href="https://ideogram.ai/" target="_blank">IDEOGRAM</a> - AI 圖像生成</li>
+                        <li><a href="https://x.ai/grok" target="_blank">Grok</a> - 動態影像生成</li>
+                        <li><a href="https://flow.google.com/" target="_blank">Flow</a> - Google 圖像工具</li>
+                    </ul>
+                </div>
+                <div class="resource-category">
+                    <h3>📚 延伸學習</h3>
+                    <ul>
+                        <li><a href="https://www.aifeng.com.tw/" target="_blank">阿峰老師官網</a> - 更多免費課程</li>
+                        <li>LINE 社群 - 課後討論與問答</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Action Plan -->
+    <section id="action" class="action-plan">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">課後行動</span>
+                <h2 class="section-title">增加行動的力量，而不是知識的重量</h2>
+            </div>
+            <div class="action-grid">
+                <div class="action-card">
+                    <div class="action-number">1</div>
+                    <h3>選一個工具開始用</h3>
+                    <p>不要貪多，先選一個最適合你工作的工具，每天使用</p>
+                    <ul>
+                        <li>常做會議記錄？先用 NotebookLM</li>
+                        <li>常做簡報？先用 Gemini Canvas</li>
+                        <li>需要行銷素材？先用 IDEOGRAM</li>
+                    </ul>
+                </div>
+                <div class="action-card">
+                    <div class="action-number">2</div>
+                    <h3>找同事一起練習</h3>
+                    <p>學 AI 環境很重要，找夥伴一起討論交流</p>
+                    <ul>
+                        <li>分享你的學習成果</li>
+                        <li>討論遇到的問題</li>
+                        <li>互相激發創意</li>
+                    </ul>
+                </div>
+                <div class="action-card">
+                    <div class="action-number">3</div>
+                    <h3>加入 LINE 社群</h3>
+                    <p>有問題隨時問，持續學習</p>
+                    <ul>
+                        <li>課後問題討論</li>
+                        <li>最新 AI 工具分享</li>
+                        <li>更多免費學習資源</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="action-highlight">
+                <div class="highlight-icon">💡</div>
+                <div class="highlight-text">
+                    <strong>阿峰老師的叮嚀</strong><br>
+                    今天上完課不是終點，是開始！AI 世界是那麼捲，工具每天都在更新。<br>
+                    重點不是你知道什麼，而是你願意開始用什麼。
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instructor Section -->
+    <section class="instructor">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">講師介紹</span>
+                <h2 class="section-title">黃敬峰（AI 峰哥）</h2>
+            </div>
+            <div class="instructor-content">
+                <div class="instructor-info">
+                    <p class="instructor-title">企業 AI 實戰培訓專家</p>
+                    <p class="instructor-bio">
+                        台灣領先的企業 AI 實戰培訓專家，核心心法：「會用、懂用、好用、每天用」。
+                    </p>
+                    <div class="instructor-stats">
+                        <div class="stat">
+                            <span class="stat-number">400+</span>
+                            <span class="stat-label">企業與機關合作</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">10,000+</span>
+                            <span class="stat-label">學員人次</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>AI 初階課程 第 3-4 堂 課後複習網站</p>
+                <p class="footer-date">2026 年 1 月 28 日</p>
+            </div>
+            <div class="footer-instructor">
+                <p>講師：黃敬峰（AI 峰哥）</p>
+                <p>交點文化股份有限公司</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
