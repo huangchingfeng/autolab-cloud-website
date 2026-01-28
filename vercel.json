@@ -1,8 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "version": 2,
-  "buildCommand": "npm run build:frontend",
+  "framework": null,
   "installCommand": "npm install --legacy-peer-deps",
+  "buildCommand": "npm run build:frontend",
   "outputDirectory": "dist/public",
   "rewrites": [
     {
