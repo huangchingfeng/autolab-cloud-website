@@ -4,15 +4,6 @@
   "installCommand": "npm install --legacy-peer-deps",
   "buildCommand": "npm run build:frontend",
   "outputDirectory": "dist/public",
-  "functions": {
-    "api/index.js": {
-      "maxDuration": 30,
-      "memory": 1024
-    },
-    "api/test.ts": {
-      "maxDuration": 10
-    }
-  },
   "rewrites": [
     { "source": "/api/test", "destination": "/api/test" },
     { "source": "/api/:path*", "destination": "/api" },
