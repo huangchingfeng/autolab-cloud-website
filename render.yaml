@@ -1,0 +1,23 @@
+# Render Blueprint for autolab-cloud API
+# Deploy at: https://dashboard.render.com/blueprints
+
+services:
+  - type: web
+    name: autolab-api
+    runtime: node
+    buildCommand: npm install --legacy-peer-deps && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: CLERK_SECRET_KEY
+        sync: false
+      - key: CLERK_PUBLISHABLE_KEY
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: VITE_APP_URL
+        value: https://autolab.cloud
+    healthCheckPath: /api/health
