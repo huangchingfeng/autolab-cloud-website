@@ -48,7 +48,7 @@ export function BlogTag() {
     );
   }
 
-  const pageUrl = `https://ai-tw.manus.space/blog/tag/${slug}`;
+  const pageUrl = `https://autolab.cloud/blog/tag/${slug}`;
   const postCount = posts?.length || 0;
 
   return (
@@ -57,7 +57,7 @@ export function BlogTag() {
         title={`${tag.name} - AI峰哥部落格標籤`}
         description={`瀏覽所有標記為「${tag.name}」的文章，探索相關的 AI 工具教學、實戰案例和最佳實踐。`}
         keywords={`${tag.name}, AI 教學, ChatGPT, Gemini, AI 工具, 企業培訓, 部落格`}
-        ogImage="https://ai-tw.manus.space/teacher-photo.jpg"
+        ogImage="https://autolab.cloud/teacher-photo.jpg"
       />
       
       <JsonLdSchema

@@ -1056,8 +1056,8 @@ export const appRouter = router({
         // Generate Newebpay payment form data
         const { createPaymentData } = await import('./_core/newebpay');
         // 藍新金流要求 NotifyURL 和 ReturnURL 只能使用 80 或 443 埠
-        // 正式環境使用自訂網域 ai-tw.manus.space
-        const baseUrl = 'https://ai-tw.manus.space';
+        // 正式環境使用自訂網域 autolab.cloud
+        const baseUrl = 'https://autolab.cloud';
 
         const paymentData = createPaymentData({
           orderId: orderNo,

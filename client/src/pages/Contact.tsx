@@ -65,7 +65,7 @@ export default function Contact() {
         title={seoTitle}
         description={seoDescription}
         keywords={seoKeywords}
-        canonicalUrl="https://ai-tw.manus.space/#contact"
+        canonicalUrl="https://autolab.cloud/#contact"
       />
     <div className="min-h-screen flex flex-col">
       <Header />

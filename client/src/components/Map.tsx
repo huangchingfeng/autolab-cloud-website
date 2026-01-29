@@ -76,7 +76,7 @@
 
 /// <reference types="@types/google.maps" />
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePersistFn } from "@/hooks/usePersistFn";
 import { cn } from "@/lib/utils";
 
@@ -86,24 +86,27 @@ declare global {
   }
 }
 
-const API_KEY = import.meta.env.VITE_FRONTEND_FORGE_API_KEY;
-const FORGE_BASE_URL =
-  import.meta.env.VITE_FRONTEND_FORGE_API_URL ||
-  "https://forge.butterfly-effect.dev";
-const MAPS_PROXY_URL = `${FORGE_BASE_URL}/v1/maps/proxy`;
+const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
-function loadMapScript() {
+function loadMapScript(): Promise<boolean> {
   return new Promise(resolve => {
+    // If no API key, don't try to load the map
+    if (!API_KEY) {
+      console.warn("Google Maps API key not configured");
+      resolve(false);
+      return;
+    }
+
     const script = document.createElement("script");
-    script.src = `${MAPS_PROXY_URL}/maps/api/js?key=${API_KEY}&v=weekly&libraries=marker,places,geocoding,geometry`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&v=weekly&libraries=marker,places,geocoding,geometry`;
     script.async = true;
-    script.crossOrigin = "anonymous";
     script.onload = () => {
-      resolve(null);
-      script.remove(); // Clean up immediately
+      resolve(true);
+      script.remove();
     };
     script.onerror = () => {
       console.error("Failed to load Google Maps script");
+      resolve(false);
     };
     document.head.appendChild(script);
   });
@@ -124,9 +127,14 @@ export function MapView({
 }: MapViewProps) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<google.maps.Map | null>(null);
+  const [mapError, setMapError] = useState(false);
 
   const init = usePersistFn(async () => {
-    await loadMapScript();
+    const loaded = await loadMapScript();
+    if (!loaded) {
+      setMapError(true);
+      return;
+    }
     if (!mapContainer.current) {
       console.error("Map container not found");
       return;
@@ -148,6 +156,17 @@ export function MapView({
   useEffect(() => {
     init();
   }, [init]);
+
+  if (mapError) {
+    return (
+      <div className={cn("w-full h-[500px] bg-gray-100 flex items-center justify-center rounded-lg", className)}>
+        <div className="text-center text-gray-500">
+          <p className="text-lg font-medium">地圖載入中...</p>
+          <p className="text-sm mt-2">如需查看位置，請聯繫我們</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div ref={mapContainer} className={cn("w-full h-[500px]", className)} />

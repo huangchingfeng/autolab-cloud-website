@@ -146,19 +146,19 @@ export default function BlogPost() {
     author: {
       '@type': 'Person' as const,
       name: '黃敬峰',
-      url: 'https://ai-tw.manus.space',
+      url: 'https://autolab.cloud',
     },
     publisher: {
       '@type': 'Organization' as const,
       name: 'AI峰哥 - 黃敬峰企業AI培訓',
       logo: {
         '@type': 'ImageObject' as const,
-        url: 'https://ai-tw.manus.space/teacher-photo.jpg',
+        url: 'https://autolab.cloud/teacher-photo.jpg',
       },
     },
     mainEntityOfPage: {
       '@type': 'WebPage' as const,
-      '@id': `https://ai-tw.manus.space/blog/${post.slug}`,
+      '@id': `https://autolab.cloud/blog/${post.slug}`,
     },
   };
 
@@ -170,7 +170,7 @@ export default function BlogPost() {
         keywords={tags.filter((t): t is NonNullable<typeof t> => t !== null).map(t => t.name).join(', ')}
         ogImage={post.coverImage || undefined}
         ogType="article"
-        canonicalUrl={`https://ai-tw.manus.space/blog/${post.slug}`}
+        canonicalUrl={`https://autolab.cloud/blog/${post.slug}`}
       />
       <JsonLdSchema data={blogPostSchema} />
       <ReadingProgressBar />

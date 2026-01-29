@@ -8,7 +8,7 @@ const router = Router();
 // Sitemap.xml 生成
 router.get('/sitemap.xml', async (req, res) => {
   try {
-    const baseUrl = 'https://ai-tw.manus.space';
+    const baseUrl = 'https://autolab.cloud';
     
     const db = await getDb();
     if (!db) {
@@ -88,7 +88,7 @@ router.get('/sitemap.xml', async (req, res) => {
 
 // Robots.txt 生成
 router.get('/robots.txt', (req, res) => {
-  const baseUrl = 'https://ai-tw.manus.space';
+  const baseUrl = 'https://autolab.cloud';
   
   const robotsTxt = `# AI峰哥官方網站 Robots.txt
 User-agent: *

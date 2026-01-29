@@ -110,7 +110,7 @@ export default function FAQ() {
         title={seoTitle}
         description={seoDescription}
         keywords={seoKeywords}
-        canonicalUrl="https://ai-tw.manus.space/faq"
+        canonicalUrl="https://autolab.cloud/faq"
       />
       <JsonLdSchema data={faqSchema} />
       <div className="min-h-screen flex flex-col">

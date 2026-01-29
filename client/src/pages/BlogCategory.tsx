@@ -48,7 +48,7 @@ export function BlogCategory() {
     );
   }
 
-  const pageUrl = `https://ai-tw.manus.space/blog/category/${slug}`;
+  const pageUrl = `https://autolab.cloud/blog/category/${slug}`;
   const postCount = posts?.length || 0;
 
   return (
@@ -57,7 +57,7 @@ export function BlogCategory() {
         title={`${category.name} - AI峰哥部落格`}
         description={category.description || `瀏覽所有關於${category.name}的文章，包含 AI 工具教學、實戰案例和最佳實踐。`}
         keywords={`${category.name}, AI 教學, ChatGPT, Gemini, AI 工具, 企業培訓`}
-        ogImage="https://ai-tw.manus.space/teacher-photo.jpg"
+        ogImage="https://autolab.cloud/teacher-photo.jpg"
       />
       
       <JsonLdSchema

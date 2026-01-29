@@ -432,7 +432,7 @@ export default function PublicCourses2026() {
                     </p>
                     <div className="flex flex-col gap-2">
                       <a 
-                        href="https://ai-tw.manus.space/topics" 
+                        href="https://autolab.cloud/topics" 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="text-cyan-600 hover:text-cyan-700 text-sm font-medium inline-flex items-center gap-1"
@@ -440,7 +440,7 @@ export default function PublicCourses2026() {
                         文案指令庫 <ChevronRight className="h-4 w-4" />
                       </a>
                       <a 
-                        href="https://ai-tw.manus.space/topics" 
+                        href="https://autolab.cloud/topics" 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="text-cyan-600 hover:text-cyan-700 text-sm font-medium inline-flex items-center gap-1"

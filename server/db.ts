@@ -1738,7 +1738,7 @@ export async function generateNewebpayForm2026(registrationId: number, amount: n
   const tradeNo = `C26_${registrationId}_${shortTimestamp}`;
   
   // 使用正式域名作為藍新金流回調 URL，確保藍新金流伺服器能穩定訪問
-  const baseUrl = 'https://ai-tw.manus.space';
+  const baseUrl = 'https://autolab.cloud';
   
   // 使用統一的 createPaymentData 函式，確保加密和簽章邏輯一致
   const paymentData = createPaymentData({

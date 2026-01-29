@@ -223,8 +223,8 @@ export const defaultPersonSchema: PersonSchema = {
   alternateName: 'AI峰哥',
   jobTitle: 'AI 企業培訓講師',
   description: '台灣企業AI職場實戰專家，擁有 10 年企業培訓經驗，專精 ChatGPT、Gemini、AI 工具實戰應用。服務超過 400 家企業。',
-  url: 'https://ai-tw.manus.space',
-  image: 'https://ai-tw.manus.space/teacher-photo.jpg',
+  url: 'https://autolab.cloud',
+  image: 'https://autolab.cloud/teacher-photo.jpg',
   email: 'nikeshoxmiles@gmail.com',
   telephone: '+886-976-715-102',
   sameAs: [
@@ -235,8 +235,8 @@ export const defaultPersonSchema: PersonSchema = {
 export const defaultOrganizationSchema: OrganizationSchema = {
   type: 'Organization',
   name: 'AI峰哥 - 黃敬峰企業AI培訓',
-  url: 'https://ai-tw.manus.space',
-  logo: 'https://ai-tw.manus.space/teacher-photo.jpg',
+  url: 'https://autolab.cloud',
+  logo: 'https://autolab.cloud/teacher-photo.jpg',
   description: '專注於企業AI職場實戰培訓，協助團隊建立可複用的AI工作流，提升工作效率與競爭力。',
   email: 'nikeshoxmiles@gmail.com',
   telephone: '+886-976-715-102',

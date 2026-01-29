@@ -50,7 +50,7 @@ export default function Blog() {
         title={seoTitle}
         description={seoDescription}
         keywords={seoKeywords}
-        canonicalUrl="https://ai-tw.manus.space/blog"
+        canonicalUrl="https://autolab.cloud/blog"
       />
       <div className="min-h-screen flex flex-col">
       <Header />

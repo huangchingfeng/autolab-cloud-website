@@ -47,20 +47,20 @@ export default function EventDetail() {
       '@type': event.location.includes('線上') ? 'VirtualLocation' as const : 'Place' as const,
       name: event.location,
       address: event.location.includes('線上') ? undefined : event.location,
-      url: event.location.includes('線上') ? `https://ai-tw.manus.space/events/${event.slug}` : undefined,
+      url: event.location.includes('線上') ? `https://autolab.cloud/events/${event.slug}` : undefined,
     } : undefined,
     image: event.coverImage || undefined,
     organizer: {
       '@type': 'Person' as const,
       name: '黃敬峰',
-      url: 'https://ai-tw.manus.space',
+      url: 'https://autolab.cloud',
     },
     offers: event.price ? {
       '@type': 'Offer' as const,
       price: event.price.toString(),
       priceCurrency: 'TWD',
       availability: 'https://schema.org/InStock',
-      url: `https://ai-tw.manus.space/events/${event.slug}`,
+      url: `https://autolab.cloud/events/${event.slug}`,
     } : undefined,
     eventStatus: 'https://schema.org/EventScheduled',
     eventAttendanceMode: event.location?.includes('線上') ? 'https://schema.org/OnlineEventAttendanceMode' : 'https://schema.org/OfflineEventAttendanceMode',
@@ -244,7 +244,7 @@ export default function EventDetail() {
             title={`${event.title} | AI峰哥`}
             description={event.description || event.title}
             ogImage={event.coverImage || undefined}
-            canonicalUrl={`https://ai-tw.manus.space/events/${event.slug}`}
+            canonicalUrl={`https://autolab.cloud/events/${event.slug}`}
           />
           {eventSchema && <JsonLdSchema data={eventSchema} />}
         </>

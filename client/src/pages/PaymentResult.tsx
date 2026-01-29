@@ -58,7 +58,7 @@ export default function PaymentResult() {
     };
     
     const title = encodeURIComponent(event.title);
-    const details = encodeURIComponent(`您已成功報名此活動\n\n訂單編號：${orderData.orderNo}\n\n活動連結：https://ai-tw.manus.space/events/${event.slug}`);
+    const details = encodeURIComponent(`您已成功報名此活動\n\n訂單編號：${orderData.orderNo}\n\n活動連結：https://autolab.cloud/events/${event.slug}`);
     const location = encodeURIComponent(event.location || '線上活動');
     const dates = `${formatDate(startUTC)}/${formatDate(endUTC)}`;
     

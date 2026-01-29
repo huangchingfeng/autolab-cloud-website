@@ -57,7 +57,7 @@ export default function Events() {
         title={seoTitle}
         description={seoDescription}
         keywords={seoKeywords}
-        canonicalUrl="https://ai-tw.manus.space/events"
+        canonicalUrl="https://autolab.cloud/events"
       />
       <div className="min-h-screen flex flex-col">
       <Header />
