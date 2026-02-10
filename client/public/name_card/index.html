@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>阿峰老師 | AI 實戰培訓專家</title>
+  <meta name="description" content="黃敬峰（AI峰哥）- 台灣企業 AI 實戰培訓專家，400+ 企業合作、10,000+ 學員">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="阿峰老師 | AI 實戰培訓專家">
+  <meta property="og:description" content="台灣企業 AI 實戰培訓專家，400+ 企業合作、10,000+ 學員">
+  <meta property="og:type" content="profile">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Light Mode Colors */
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --text-primary: #1e293b;
+      --text-secondary: #64748b;
+      --text-muted: #94a3b8;
+      --border-color: #e2e8f0;
+      --accent-color: #3b82f6;
+      --accent-hover: #2563eb;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+      --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #0f172a;
+      --bg-card: #1e293b;
+      --bg-card-hover: #334155;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --border-color: #334155;
+      --accent-color: #60a5fa;
+      --accent-hover: #3b82f6;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.4), 0 2px 4px -2px rgba(0,0,0,0.3);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.4), 0 4px 6px -4px rgba(0,0,0,0.3);
+      --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.4), 0 8px 10px -6px rgba(0,0,0,0.3);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: var(--shadow-md);
+      transition: all 0.3s ease;
+      z-index: 100;
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.1);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .theme-toggle:active {
+      transform: scale(0.95);
+    }
+
+    /* Main Card */
+    .card {
+      background: var(--bg-card);
+      border-radius: 24px;
+      box-shadow: var(--shadow-xl);
+      max-width: 420px;
+      width: 100%;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      animation: fadeInUp 0.6s ease;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-xl), 0 0 40px rgba(59, 130, 246, 0.1);
+    }
+
+    /* Header Section */
+    .card-header {
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      padding: 32px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+      animation: shimmer 15s infinite linear;
+    }
+
+    @keyframes shimmer {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid rgba(255,255,255,0.9);
+      margin-bottom: 16px;
+      object-fit: cover;
+      position: relative;
+      z-index: 1;
+      transition: transform 0.3s ease;
+    }
+
+    .avatar:hover {
+      transform: scale(1.05);
+    }
+
+    .name {
+      color: white;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .title {
+      color: rgba(255,255,255,0.9);
+      font-size: 16px;
+      font-weight: 500;
+      position: relative;
+      z-index: 1;
+    }
+
+    .tagline {
+      color: rgba(255,255,255,0.8);
+      font-size: 13px;
+      margin-top: 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Stats */
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .stat {
+      text-align: center;
+      color: white;
+    }
+
+    .stat-number {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      opacity: 0.9;
+    }
+
+    /* Body Section */
+    .card-body {
+      padding: 24px;
+    }
+
+    /* Quick Actions */
+    .quick-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .action-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .action-btn.primary {
+      background: linear-gradient(135deg, #06c755 0%, #00b341 100%);
+      color: white;
+    }
+
+    .action-btn.secondary {
+      background: var(--bg-card-hover);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+    }
+
+    .action-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .action-btn:active {
+      transform: translateY(0);
+    }
+
+    .action-btn.primary:hover {
+      background: linear-gradient(135deg, #00b341 0%, #009936 100%);
+    }
+
+    /* Links Section */
+    .section-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+
+    .links-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .link-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: var(--bg-card-hover);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text-primary);
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+    }
+
+    .link-item:hover {
+      border-color: var(--accent-color);
+      transform: translateX(4px);
+      background: var(--bg-card);
+    }
+
+    .link-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .link-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .link-title {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .link-desc {
+      font-size: 12px;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .link-arrow {
+      color: var(--text-muted);
+      transition: transform 0.3s ease;
+    }
+
+    .link-item:hover .link-arrow {
+      transform: translateX(4px);
+      color: var(--accent-color);
+    }
+
+    /* Community Section */
+    .community-btns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .community-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .community-btn.line {
+      background: linear-gradient(135deg, #06c755 0%, #00b341 100%);
+      color: white;
+    }
+
+    .community-btn.whatsapp {
+      background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+      color: white;
+    }
+
+    .community-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Footer */
+    .card-footer {
+      padding: 16px 24px;
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+    }
+
+    .motto {
+      font-size: 13px;
+      color: var(--text-secondary);
+      font-style: italic;
+    }
+
+    .motto strong {
+      color: var(--accent-color);
+    }
+
+    /* QR Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal {
+      background: var(--bg-card);
+      border-radius: 20px;
+      padding: 32px;
+      max-width: 320px;
+      width: 100%;
+      text-align: center;
+      animation: scaleIn 0.3s ease;
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .modal-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .modal-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+
+    .qr-code {
+      background: white;
+      padding: 16px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+
+    .qr-code img {
+      width: 180px;
+      height: 180px;
+    }
+
+    .line-id {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-card-hover);
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-bottom: 16px;
+    }
+
+    .line-id:hover {
+      background: var(--accent-color);
+      color: white;
+    }
+
+    .modal-close {
+      background: var(--bg-card-hover);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 10px 24px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: var(--text-primary);
+    }
+
+    .modal-close:hover {
+      background: var(--text-primary);
+      color: var(--bg-card);
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--text-primary);
+      color: var(--bg-card);
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 14px;
+      z-index: 1001;
+      transition: transform 0.3s ease;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .card {
+        border-radius: 20px;
+      }
+
+      .card-header {
+        padding: 24px 20px;
+      }
+
+      .avatar {
+        width: 100px;
+        height: 100px;
+      }
+
+      .name {
+        font-size: 24px;
+      }
+
+      .stats {
+        gap: 24px;
+      }
+
+      .stat-number {
+        font-size: 20px;
+      }
+
+      .card-body {
+        padding: 20px;
+      }
+
+      .quick-actions {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Theme Toggle -->
+  <button class="theme-toggle" id="themeToggle" aria-label="切換深色/淺色模式">
+    <span class="theme-icon">🌙</span>
+  </button>
+
+  <!-- Main Card -->
+  <div class="card">
+    <!-- Header -->
+    <div class="card-header">
+      <img src="/teacher-photo.jpg" alt="阿峰老師" class="avatar">
+      <h1 class="name">阿峰老師</h1>
+      <p class="title">AI 實戰培訓專家</p>
+      <p class="tagline">黃敬峰 Jingfeng Huang</p>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-number">400+</div>
+          <div class="stat-label">企業合作</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">10,000+</div>
+          <div class="stat-label">培訓學員</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div class="card-body">
+      <!-- Quick Actions -->
+      <div class="quick-actions">
+        <button class="action-btn primary" id="addLineBtn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+          </svg>
+          加入 LINE
+        </button>
+        <a href="https://www.youtube.com/channel/UCVVZz6m4T4k6-PZxFSlCkRQ" target="_blank" class="action-btn secondary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+          YouTube
+        </a>
+      </div>
+
+      <!-- Links -->
+      <p class="section-title">探索更多</p>
+      <div class="links-list">
+        <a href="https://www.autolab.cloud/" target="_blank" class="link-item">
+          <div class="link-icon" style="background: linear-gradient(135deg, #3b82f6, #8b5cf6);">🌐</div>
+          <div class="link-content">
+            <div class="link-title">阿峰老師官網</div>
+            <div class="link-desc">autolab.cloud</div>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="https://www.autolab.cloud/blog" target="_blank" class="link-item">
+          <div class="link-icon" style="background: linear-gradient(135deg, #f59e0b, #ef4444);">📝</div>
+          <div class="link-content">
+            <div class="link-title">部落格文章</div>
+            <div class="link-desc">AI 趨勢、教學、心得分享</div>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="https://www.autolab.cloud/events" target="_blank" class="link-item">
+          <div class="link-icon" style="background: linear-gradient(135deg, #10b981, #059669);">📅</div>
+          <div class="link-content">
+            <div class="link-title">課程活動</div>
+            <div class="link-desc">最新開課資訊</div>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="https://www.autolab.cloud/topics" target="_blank" class="link-item">
+          <div class="link-icon" style="background: linear-gradient(135deg, #8b5cf6, #ec4899);">🛠️</div>
+          <div class="link-content">
+            <div class="link-title">好用工具</div>
+            <div class="link-desc">阿峰老師製作的 AI 工具</div>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+      </div>
+
+      <!-- Community -->
+      <p class="section-title">加入學員社群</p>
+      <div class="community-btns">
+        <a href="https://reurl.cc/GGlLNx" target="_blank" class="community-btn line">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+          </svg>
+          LINE 社群（中文）
+        </a>
+        <a href="https://chat.whatsapp.com/BemCCL9DsW1GyH4OkO20Rt" target="_blank" class="community-btn whatsapp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          WhatsApp（英文）
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="card-footer">
+      <p class="motto">「<strong>你是機長，AI是機組人員</strong>」</p>
+    </div>
+  </div>
+
+  <!-- QR Modal -->
+  <div class="modal-overlay" id="qrModal">
+    <div class="modal">
+      <h3 class="modal-title">加入阿峰老師 LINE</h3>
+      <p class="modal-desc">掃描 QR Code 或點擊複製 ID</p>
+      <div class="qr-code">
+        <img src="https://qr-official.line.me/gs/M_389uwgji_BW.png" alt="LINE QR Code">
+      </div>
+      <div class="line-id" id="copyLineId">
+        📋 @389uwgji
+      </div>
+      <button class="modal-close" id="closeModal">關閉</button>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">已複製到剪貼簿！</div>
+
+  <script>
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('.theme-icon');
+
+    // Check saved theme or system preference
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      themeIcon.textContent = '☀️';
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+
+      if (isDark) {
+        document.documentElement.removeAttribute('data-theme');
+        themeIcon.textContent = '🌙';
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeIcon.textContent = '☀️';
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+
+    // QR Modal
+    const addLineBtn = document.getElementById('addLineBtn');
+    const qrModal = document.getElementById('qrModal');
+    const closeModal = document.getElementById('closeModal');
+    const copyLineId = document.getElementById('copyLineId');
+    const toast = document.getElementById('toast');
+
+    addLineBtn.addEventListener('click', () => {
+      qrModal.classList.add('active');
+    });
+
+    closeModal.addEventListener('click', () => {
+      qrModal.classList.remove('active');
+    });
+
+    qrModal.addEventListener('click', (e) => {
+      if (e.target === qrModal) {
+        qrModal.classList.remove('active');
+      }
+    });
+
+    // Copy LINE ID
+    copyLineId.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText('@389uwgji');
+        showToast('已複製 LINE ID！');
+      } catch (err) {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = '@389uwgji';
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        showToast('已複製 LINE ID！');
+      }
+    });
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2000);
+    }
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && qrModal.classList.contains('active')) {
+        qrModal.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>
