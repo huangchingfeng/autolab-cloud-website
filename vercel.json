@@ -10,17 +10,12 @@
       "memory": 1024
     }
   },
-  "rewrites": [
-    { "source": "/api/test", "destination": "/api/test" },
-    { "source": "/api/(.*)", "destination": "/api" }
-  ],
+  "trailingSlash": true,
+  "cleanUrls": true,
   "routes": [
-    { "handle": "filesystem" },
     { "src": "/api/test", "dest": "/api/test" },
     { "src": "/api/(.*)", "dest": "/api" },
-    { "src": "^/name_card$", "dest": "/name_card/index.html", "status": 200 },
-    { "src": "^/gifts$", "dest": "/gifts/index.html", "status": 200 },
-    { "src": "^/20260130-contrel-ai$", "dest": "/20260130-contrel-ai/index.html", "status": 200 },
-    { "src": "/((?!name_card|gifts|20260130-contrel-ai|api).*)", "dest": "/index.html" }
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
