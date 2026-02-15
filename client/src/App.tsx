@@ -52,6 +52,7 @@ import { LineChatPlugin } from "./components/LineChatPlugin";
 import SocialMediaButtons from "./components/SocialMediaButtons";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import NameCard from "./pages/NameCard";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -86,6 +87,9 @@ function Router() {
       <Route path={"/faq"} component={FAQ} />
       <Route path="/payment-result" component={PaymentResult} />
       <Route path="/course-2026-payment-result" component={Course2026PaymentResult} />
+
+      {/* Name Card - 獨立頁面 */}
+      <Route path="/name_card" component={NameCard} />
 
       {/* Auth Routes - 使用通配符處理 Clerk 的子路由 */}
       <Route path="/sign-in/:rest*" component={SignIn} />
