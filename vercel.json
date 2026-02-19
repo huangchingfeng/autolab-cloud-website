@@ -13,9 +13,9 @@
   "trailingSlash": true,
   "cleanUrls": true,
   "routes": [
+    { "handle": "filesystem" },
     { "src": "/api/test", "dest": "/api/test" },
     { "src": "/api/(.*)", "dest": "/api" },
-    { "handle": "filesystem" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
