@@ -60,7 +60,7 @@ export default function NameCard() {
     <>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
-        
+
         .namecard-page * { margin: 0; padding: 0; box-sizing: border-box; }
         .namecard-page { font-family: 'Noto Sans TC', sans-serif; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; transition: all 0.3s ease; }
         .namecard-page .theme-toggle { position: fixed; top: 20px; right: 20px; border-radius: 50%; width: 48px; height: 48px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); transition: all 0.3s ease; z-index: 100; }
