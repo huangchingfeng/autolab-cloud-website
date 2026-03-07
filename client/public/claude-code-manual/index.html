@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>免費下載：講師如何用 Claude Code 處理 70% 的工作 — 完整實戰手冊</title>
+
+  <!-- SEO -->
+  <meta name="description" content="一位企業培訓講師的 Claude Code 實戰手冊。6 大應用場景、Skills 自動化系統、三步起步指南。免費下載 15 頁完整簡報。">
+  <meta name="keywords" content="Claude Code, 講師, 企業培訓, AI工具, 自動化, 阿峰老師">
+  <meta name="author" content="阿峰老師 黃敬峰">
+
+  <!-- OG -->
+  <meta property="og:title" content="免費下載：講師如何用 Claude Code 處理 70% 的工作">
+  <meta property="og:description" content="6 大實戰應用、Skills 自動化系統、三步起步指南。15 頁完整簡報免費下載。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.autolab.cloud/claude-code-manual/">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --cyan: #00D4FF;
+      --navy: #0A1628;
+      --card: #0F1D32;
+      --card-border: #1A2A44;
+      --orange: #FF6B35;
+      --green: #34C759;
+      --white: #FFFFFF;
+      --gray-200: #C7C7CC;
+      --gray-400: #8E8E93;
+      --gray-600: #48484A;
+      --font-sans: 'Inter', 'Noto Sans TC', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--navy);
+      color: var(--white);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── Top Accent Bar ── */
+    .top-bar {
+      height: 4px;
+      background: linear-gradient(90deg, var(--cyan), var(--orange));
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+    }
+
+    /* ── Hero Section ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 24px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-left h1 {
+      font-size: 2.8rem;
+      font-weight: 900;
+      line-height: 1.3;
+      margin-bottom: 24px;
+    }
+
+    .hero-left h1 .highlight {
+      color: var(--cyan);
+      display: block;
+    }
+
+    .hero-left .subtitle {
+      font-size: 1.15rem;
+      color: var(--gray-200);
+      margin-bottom: 32px;
+      line-height: 1.8;
+    }
+
+    .hero-badges {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    .badge {
+      background: rgba(0,212,255,0.1);
+      border: 1px solid rgba(0,212,255,0.3);
+      color: var(--cyan);
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .hero-quote {
+      background: var(--card);
+      border-left: 3px solid var(--cyan);
+      padding: 16px 20px;
+      border-radius: 0 8px 8px 0;
+      font-size: 1rem;
+      color: var(--gray-200);
+    }
+
+    .hero-quote strong {
+      color: var(--cyan);
+    }
+
+    /* ── Form Card ── */
+    .form-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 40px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .form-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--cyan), var(--green));
+    }
+
+    .form-card h2 {
+      font-size: 1.5rem;
+      margin-bottom: 6px;
+    }
+
+    .form-card .form-subtitle {
+      color: var(--gray-400);
+      font-size: 0.9rem;
+      margin-bottom: 28px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gray-200);
+      margin-bottom: 6px;
+    }
+
+    .form-group label .required {
+      color: var(--orange);
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--navy);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      color: var(--white);
+      font-size: 1rem;
+      font-family: var(--font-sans);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(0,212,255,0.15);
+    }
+
+    .form-group input::placeholder {
+      color: var(--gray-600);
+    }
+
+    .form-group select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%238E8E93' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+    }
+
+    .form-group select option {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 20px 0 24px;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--cyan);
+      flex-shrink: 0;
+    }
+
+    .checkbox-group label {
+      font-size: 0.85rem;
+      color: var(--gray-200);
+      line-height: 1.5;
+      cursor: pointer;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, var(--cyan), #0099cc);
+      color: var(--navy);
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      font-family: var(--font-sans);
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,212,255,0.3);
+    }
+
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* ── Manual Checkbox Options ── */
+    .manual-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .manual-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: var(--navy);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .manual-option:hover {
+      border-color: rgba(0,212,255,0.4);
+      background: rgba(0,212,255,0.03);
+    }
+
+    .manual-option:has(input:checked) {
+      border-color: var(--cyan);
+      background: rgba(0,212,255,0.08);
+    }
+
+    .manual-option input[type="checkbox"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .manual-check {
+      width: 22px;
+      height: 22px;
+      border: 2px solid var(--card-border);
+      border-radius: 6px;
+      flex-shrink: 0;
+      margin-top: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .manual-option:has(input:checked) .manual-check {
+      background: var(--cyan);
+      border-color: var(--cyan);
+    }
+
+    .manual-option:has(input:checked) .manual-check::after {
+      content: '\2713';
+      color: var(--navy);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .manual-info {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+      flex: 1;
+    }
+
+    .manual-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .manual-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 100px;
+    }
+
+    .manual-tag.available {
+      background: rgba(52,199,89,0.15);
+      color: var(--green);
+      border: 1px solid rgba(52,199,89,0.3);
+    }
+
+    .manual-tag.upcoming {
+      background: rgba(255,107,53,0.1);
+      color: var(--orange);
+      border: 1px solid rgba(255,107,53,0.25);
+    }
+
+    .manual-desc {
+      width: 100%;
+      font-size: 0.8rem;
+      color: var(--gray-400);
+      line-height: 1.4;
+    }
+
+    .upcoming-notice {
+      background: rgba(255, 107, 53, 0.1);
+      border: 1px solid rgba(255, 107, 53, 0.3);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 0.85rem;
+      color: var(--orange);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      line-height: 1.5;
+    }
+
+    .notice-icon {
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .form-note {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--gray-600);
+      margin-top: 14px;
+    }
+
+    /* ── Preview Section ── */
+    .preview {
+      padding: 80px 24px;
+      background: linear-gradient(180deg, var(--navy) 0%, #0d1e35 100%);
+    }
+
+    .preview-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      color: var(--cyan);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 48px;
+    }
+
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .preview-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .preview-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--cyan);
+    }
+
+    .preview-card .card-accent {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+    }
+
+    .preview-card .card-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      color: rgba(0,212,255,0.15);
+      margin-bottom: 8px;
+    }
+
+    .preview-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .preview-card p {
+      font-size: 0.9rem;
+      color: var(--gray-200);
+      line-height: 1.6;
+    }
+
+    /* ── Pain Point Section ── */
+    .pain {
+      padding: 80px 24px;
+      background: var(--navy);
+    }
+
+    .pain-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .pain-comparison {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 24px;
+      align-items: center;
+      margin-top: 40px;
+    }
+
+    .pain-box {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 32px 28px;
+    }
+
+    .pain-box h3 {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    .pain-box.before h3 { color: var(--orange); }
+    .pain-box.after h3 { color: var(--green); }
+
+    .pain-box ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .pain-box ul li {
+      padding: 8px 0;
+      font-size: 0.95rem;
+      color: var(--gray-200);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .pain-box ul li:last-child { border: none; }
+
+    .pain-arrow {
+      font-size: 2.5rem;
+      color: var(--cyan);
+      text-align: center;
+    }
+
+    .pain-result {
+      text-align: center;
+      margin-top: 32px;
+      font-size: 1.2rem;
+      color: var(--cyan);
+      font-weight: 700;
+    }
+
+    /* ── Author Section ── */
+    .author {
+      padding: 80px 24px;
+      background: linear-gradient(180deg, #0d1e35 0%, var(--navy) 100%);
+    }
+
+    .author-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .author-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 48px 40px;
+    }
+
+    .author-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--cyan), var(--orange));
+      padding: 3px;
+      margin: 0 auto 20px;
+      overflow: hidden;
+    }
+
+    .author-avatar img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .author-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 4px;
+    }
+
+    .author-card .author-title {
+      color: var(--cyan);
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .author-card p {
+      color: var(--gray-200);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .author-stats {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin-top: 28px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-item .stat-number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--cyan);
+      font-family: var(--font-mono);
+    }
+
+    .stat-item .stat-label {
+      font-size: 0.8rem;
+      color: var(--gray-400);
+      margin-top: 4px;
+    }
+
+    /* ── Series Section ── */
+    .series {
+      padding: 80px 24px;
+      background: linear-gradient(180deg, var(--navy) 0%, #0d1e35 100%);
+    }
+
+    .series-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .series-desc {
+      color: var(--gray-200);
+      font-size: 1.05rem;
+      margin-top: -32px;
+      margin-bottom: 48px;
+    }
+
+    .series-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .series-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 28px 22px;
+      text-align: center;
+      position: relative;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .series-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .series-card.active {
+      border-color: var(--cyan);
+      box-shadow: 0 0 30px rgba(0,212,255,0.1);
+    }
+
+    .series-card.upcoming {
+      opacity: 0.7;
+    }
+
+    .series-card.upcoming:hover {
+      opacity: 0.85;
+    }
+
+    .series-badge {
+      position: absolute;
+      top: -10px;
+      right: 16px;
+      padding: 4px 14px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .series-badge.now {
+      background: var(--cyan);
+      color: var(--navy);
+    }
+
+    .series-badge.soon {
+      background: var(--gray-600);
+      color: var(--gray-200);
+    }
+
+    .series-icon {
+      font-size: 2.5rem;
+      margin-bottom: 14px;
+    }
+
+    .series-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .series-card p {
+      font-size: 0.85rem;
+      color: var(--gray-200);
+      line-height: 1.6;
+      margin-bottom: 18px;
+      min-height: 52px;
+    }
+
+    .series-btn {
+      display: inline-block;
+      padding: 10px 24px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    a.series-btn {
+      background: var(--cyan);
+      color: var(--navy);
+    }
+
+    a.series-btn:hover {
+      box-shadow: 0 4px 15px rgba(0,212,255,0.3);
+    }
+
+    .series-btn.disabled {
+      background: var(--card-border);
+      color: var(--gray-400);
+      cursor: default;
+    }
+
+    .series-note {
+      text-align: center;
+      color: var(--gray-400);
+      font-size: 0.9rem;
+      margin-top: 32px;
+    }
+
+    @media (max-width: 768px) {
+      .series-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .series-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ── CTA Section ── */
+    .cta {
+      padding: 80px 24px;
+      text-align: center;
+      background: var(--navy);
+      position: relative;
+    }
+
+    .cta::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(0,212,255,0.06) 0%, transparent 70%);
+    }
+
+    .cta-inner {
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .cta h2 {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .cta p {
+      color: var(--gray-200);
+      font-size: 1.05rem;
+      margin-bottom: 32px;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 18px 48px;
+      background: linear-gradient(135deg, var(--cyan), #0099cc);
+      color: var(--navy);
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 1.15rem;
+      font-weight: 800;
+      transition: all 0.3s;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,212,255,0.3);
+    }
+
+    /* ── Footer ── */
+    .footer {
+      padding: 40px 24px;
+      text-align: center;
+      border-top: 1px solid var(--card-border);
+    }
+
+    .footer p {
+      color: var(--gray-600);
+      font-size: 0.85rem;
+    }
+
+    .footer a {
+      color: var(--cyan);
+      text-decoration: none;
+    }
+
+    /* ── Success Modal ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(10, 22, 40, 0.9);
+      backdrop-filter: blur(8px);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--card);
+      border: 1px solid var(--cyan);
+      border-radius: 20px;
+      padding: 48px 40px;
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      animation: modalIn 0.4s ease;
+    }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.9) translateY(20px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .modal .success-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green), #28a745);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      margin: 0 auto 24px;
+    }
+
+    .modal h2 {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+    }
+
+    .modal p {
+      color: var(--gray-200);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .modal .download-btn {
+      display: inline-block;
+      padding: 14px 36px;
+      background: linear-gradient(135deg, var(--cyan), #0099cc);
+      color: var(--navy);
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 800;
+      transition: all 0.3s;
+    }
+
+    .modal .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,212,255,0.3);
+    }
+
+    .modal .close-modal {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: var(--gray-400);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .hero-left h1 {
+        font-size: 2rem;
+      }
+
+      .preview-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pain-comparison {
+        grid-template-columns: 1fr;
+      }
+
+      .pain-arrow {
+        transform: rotate(90deg);
+      }
+
+      .author-stats {
+        gap: 24px;
+      }
+
+      .form-card {
+        padding: 32px 24px;
+      }
+
+      .section-title {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar"></div>
+
+  <!-- ════ HERO ════ -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-badges">
+          <span class="badge">免費下載</span>
+          <span class="badge">15 頁完整手冊</span>
+          <span class="badge">附操作步驟</span>
+        </div>
+
+        <h1>
+          一位企業講師如何用 Claude Code
+          <span class="highlight">處理自己 70% 的工作</span>
+        </h1>
+
+        <p class="subtitle">
+          6 大實戰應用場景 ╱ Skills 自動化系統 ╱ 三步起步指南<br>
+          從課程知識庫、提案網站到錄音轉逐字稿 —— 不寫程式也能上手。
+        </p>
+
+        <div class="hero-quote">
+          <strong>「你是機長，AI 是機組人員。」</strong><br>
+          機組人員幫你做起飛前檢查，但要飛去哪裡 —— 機長說了算。
+        </div>
+      </div>
+
+      <!-- ════ FORM ════ -->
+      <div class="form-card" id="lead-form-card">
+        <h2>免費領取實戰手冊</h2>
+        <p class="form-subtitle">選擇你的角色，填寫資料後立即下載</p>
+
+        <form id="leadForm" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label>姓名 <span class="required">*</span></label>
+            <input type="text" name="name" placeholder="例：王小明" required>
+          </div>
+
+          <div class="form-group">
+            <label>Email <span class="required">*</span></label>
+            <input type="email" name="email" placeholder="example@company.com" required>
+          </div>
+
+          <div class="form-group">
+            <label>公司 / 組織</label>
+            <input type="text" name="company" placeholder="例：台灣科技股份有限公司">
+          </div>
+
+          <div class="form-group">
+            <label>職稱</label>
+            <input type="text" name="title" placeholder="例：人資經理 / 講師 / 行銷主管">
+          </div>
+
+          <div class="form-group">
+            <label>我想要的手冊（可複選）<span class="required">*</span></label>
+            <div class="manual-options" id="manualOptions">
+              <label class="manual-option">
+                <input type="checkbox" name="manuals" value="trainer" onchange="updateFormUI()">
+                <span class="manual-check"></span>
+                <span class="manual-info">
+                  <span class="manual-name">企業講師篇</span>
+                  <span class="manual-tag available">可立即下載</span>
+                  <span class="manual-desc">課程知識庫、提案網站、錄音轉記錄、Skills 自動化</span>
+                </span>
+              </label>
+              <label class="manual-option">
+                <input type="checkbox" name="manuals" value="planner" onchange="updateFormUI()">
+                <span class="manual-check"></span>
+                <span class="manual-info">
+                  <span class="manual-name">企劃人員篇</span>
+                  <span class="manual-tag upcoming">製作中</span>
+                  <span class="manual-desc">競品分析、提案簡報、專案追蹤、會議記錄自動化</span>
+                </span>
+              </label>
+              <label class="manual-option">
+                <input type="checkbox" name="manuals" value="sales" onchange="updateFormUI()">
+                <span class="manual-check"></span>
+                <span class="manual-info">
+                  <span class="manual-name">業務 / BD 篇</span>
+                  <span class="manual-tag upcoming">製作中</span>
+                  <span class="manual-desc">客戶研究、銷售信件、CRM 整理、報價自動化</span>
+                </span>
+              </label>
+              <label class="manual-option">
+                <input type="checkbox" name="manuals" value="marketing" onchange="updateFormUI()">
+                <span class="manual-check"></span>
+                <span class="manual-info">
+                  <span class="manual-name">行銷人篇</span>
+                  <span class="manual-tag upcoming">製作中</span>
+                  <span class="manual-desc">SEO 優化、社群經營、廣告文案、數據報表</span>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <div id="upcomingNotice" class="upcoming-notice" style="display:none;">
+            <span class="notice-icon">&#128276;</span>
+            <span>你勾選的手冊有部分還在製作中，上線後我們會第一時間寄到你的信箱！</span>
+          </div>
+
+          <div class="checkbox-group">
+            <input type="checkbox" id="subscribe" name="subscribe" checked>
+            <label for="subscribe">
+              我同意訂閱阿峰老師的 AI 實戰電子報，不定期收到 AI 工具教學、實戰案例分享（隨時可取消訂閱）
+            </label>
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">
+            立即免費下載手冊
+          </button>
+
+          <p class="form-note">
+            我們重視你的隱私，絕不會分享你的資料給第三方。
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ PREVIEW：手冊裡有什麼 ════ -->
+  <section class="preview" id="preview">
+    <div class="preview-inner">
+      <p class="section-label">手冊內容搶先看</p>
+      <h2 class="section-title">這份手冊會教你什麼？</h2>
+
+      <div class="preview-grid">
+        <div class="preview-card">
+          <div class="card-accent" style="background: var(--cyan);"></div>
+          <div class="card-number">01</div>
+          <h3>課程知識庫</h3>
+          <p>把幾百堂課的經驗變成 AI 可讀取的知識庫，10 分鐘產出客製化課程大綱。</p>
+        </div>
+
+        <div class="preview-card">
+          <div class="card-accent" style="background: var(--orange);"></div>
+          <div class="card-number">02</div>
+          <h3>課程提案網站</h3>
+          <p>客戶週五來電，週五晚上提案網站就上線。不再等工程師排程。</p>
+        </div>
+
+        <div class="preview-card">
+          <div class="card-accent" style="background: var(--green);"></div>
+          <div class="card-number">03</div>
+          <h3>錄音轉課程記錄</h3>
+          <p>一句指令把 3 小時錄音變成結構化摘要。本地端處理，保護隱私。</p>
+        </div>
+
+        <div class="preview-card">
+          <div class="card-accent" style="background: var(--cyan);"></div>
+          <div class="card-number">04</div>
+          <h3>自動發布系統</h3>
+          <p>寫完文章，n8n 自動轉 HTML → 部署 → LINE Bot 推播 → 社群文案。</p>
+        </div>
+
+        <div class="preview-card">
+          <div class="card-accent" style="background: var(--orange);"></div>
+          <div class="card-number">05</div>
+          <h3>Skills 自動化</h3>
+          <p>把重複的工作存成一句指令。半年後，大部分日常工作都有對應的指令。</p>
+        </div>
+
+        <div class="preview-card">
+          <div class="card-accent" style="background: var(--green);"></div>
+          <div class="card-number">06</div>
+          <h3>三步起步指南</h3>
+          <p>列出痛點 → 整理資料 → 從一件小事開始。附行動清單，今天就能動手。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ PAIN POINT ════ -->
+  <section class="pain">
+    <div class="pain-inner">
+      <p class="section-label">為什麼你需要這份手冊</p>
+      <h2 class="section-title">講師的真相：70% 的時間不在教學</h2>
+
+      <div class="pain-comparison">
+        <div class="pain-box before">
+          <h3>以前（至少兩週）</h3>
+          <ul>
+            <li>翻過去幾十份資料拼大綱</li>
+            <li>手動排版成 Word / 簡報</li>
+            <li>找工程師做網頁，等一週</li>
+            <li>整理 3 小時錄音花 5 小時</li>
+            <li>每篇文章發布要 1 小時</li>
+          </ul>
+        </div>
+
+        <div class="pain-arrow">&#10132;</div>
+
+        <div class="pain-box after">
+          <h3>現在（同一天）</h3>
+          <ul>
+            <li>10 分鐘自動產出課程大綱</li>
+            <li>30 分鐘提案網站上線</li>
+            <li>不需要等任何人排程</li>
+            <li>一句指令完成逐字稿整理</li>
+            <li>寫完文章，剩下全自動</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="pain-result">重點不是比工程師快，而是不需要等別人排程。</p>
+    </div>
+  </section>
+
+  <!-- ════ AUTHOR ════ -->
+  <section class="author">
+    <div class="author-inner">
+      <div class="author-card">
+        <div class="author-avatar"><img src="teacher-photo.jpg" alt="阿峰老師 黃敬峰"></div>
+        <h3>阿峰老師（黃敬峰）</h3>
+        <p class="author-title">Autolab 創辦人 ｜ 企業 AI 實戰培訓專家</p>
+        <p>
+          專注於企業 AI 培訓，教學員「會用、懂用、好用、每天用」。
+          從金融業到製造業、從基層員工到高階主管，
+          累積超過 400 家企業合作經驗。
+        </p>
+        <div class="author-stats">
+          <div class="stat-item">
+            <div class="stat-number">400+</div>
+            <div class="stat-label">企業合作</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">10,000+</div>
+            <div class="stat-label">培訓學員</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">15</div>
+            <div class="stat-label">頁完整手冊</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ SERIES：系列手冊 ════ -->
+  <section class="series" id="series">
+    <div class="series-inner">
+      <p class="section-label">Claude Code 實戰系列</p>
+      <h2 class="section-title">不同角色，不同用法 — 找到屬於你的手冊</h2>
+      <p class="series-desc">每個職位都有最適合自己的 AI 工作流。我們正在打造一系列針對不同角色的實戰手冊。</p>
+
+      <div class="series-grid">
+        <!-- 手冊 1：講師（當前這本）-->
+        <div class="series-card active">
+          <div class="series-badge now">本頁下載</div>
+          <div class="series-icon">&#127891;</div>
+          <h3>企業講師篇</h3>
+          <p>課程知識庫、提案網站、錄音轉記錄、Skills 自動化</p>
+          <a href="#lead-form-card" class="series-btn">立即下載</a>
+        </div>
+
+        <!-- 手冊 2：企劃人員 -->
+        <div class="series-card upcoming">
+          <div class="series-badge soon">即將推出</div>
+          <div class="series-icon">&#128203;</div>
+          <h3>企劃人員篇</h3>
+          <p>競品分析、提案簡報、專案追蹤、會議記錄自動化</p>
+          <span class="series-btn disabled">敬請期待</span>
+        </div>
+
+        <!-- 手冊 3：業務 / BD -->
+        <div class="series-card upcoming">
+          <div class="series-badge soon">即將推出</div>
+          <div class="series-icon">&#129309;</div>
+          <h3>業務 / BD 篇</h3>
+          <p>客戶研究、銷售信件、CRM 整理、報價自動化</p>
+          <span class="series-btn disabled">敬請期待</span>
+        </div>
+
+        <!-- 手冊 4：行銷人 -->
+        <div class="series-card upcoming">
+          <div class="series-badge soon">即將推出</div>
+          <div class="series-icon">&#128225;</div>
+          <h3>行銷人篇</h3>
+          <p>SEO 優化、社群經營、廣告文案、數據報表</p>
+          <span class="series-btn disabled">敬請期待</span>
+        </div>
+      </div>
+
+      <p class="series-note">訂閱電子報，新手冊上線時第一時間通知你。</p>
+    </div>
+  </section>
+
+  <!-- ════ BOTTOM CTA ════ -->
+  <section class="cta">
+    <div class="cta-inner">
+      <h2>準備好讓 AI 幫你省下 <span style="color: var(--cyan);">70%</span> 的時間了嗎？</h2>
+      <p>填寫資料，立即免費下載完整的 15 頁實戰手冊。</p>
+      <a href="#lead-form-card" class="cta-btn">立即免費下載</a>
+    </div>
+  </section>
+
+  <!-- ════ FOOTER ════ -->
+  <footer class="footer">
+    <p>
+      &copy; 2026 Autolab — 阿峰老師 ｜
+      <a href="https://www.autolab.cloud" target="_blank">autolab.cloud</a> ｜
+      <a href="https://blog.autolab.cloud" target="_blank">Blog</a> ｜
+      ai@autolab.cloud
+    </p>
+  </footer>
+
+  <!-- ════ SUCCESS MODAL ════ -->
+  <div class="modal-overlay" id="successModal">
+    <div class="modal">
+      <button class="close-modal" onclick="closeModal()">&times;</button>
+      <!-- 可下載狀態 -->
+      <div id="modalAvailable">
+        <div class="success-icon" style="background: linear-gradient(135deg, var(--green), #28a745);">&#10003;</div>
+        <h2>太好了！手冊已準備好</h2>
+        <p>
+          感謝你的訂閱！<br>
+          點擊下方按鈕立即下載手冊。<br>
+          我們也會寄一封信到你的信箱。
+        </p>
+        <a href="講師如何用Claude-Code-完整手冊.pdf" download class="download-btn" id="downloadLink">
+          立即下載 PDF 手冊
+        </a>
+      </div>
+
+      <!-- 即將推出狀態 -->
+      <div id="modalUpcoming" style="display:none;">
+        <div class="success-icon" style="background: linear-gradient(135deg, var(--cyan), var(--orange));">&#128276;</div>
+        <h2>已收到！我們會通知你</h2>
+        <p>
+          感謝你的興趣！<br>
+          <strong style="color: var(--cyan);"><span id="upcomingManualName">這些手冊</span></strong>目前正在製作中。<br>
+          上線後我們會第一時間寄到你的信箱。
+        </p>
+        <p style="color: var(--gray-400); font-size: 0.9rem; margin-top: 16px;">
+          想先看看已上線的手冊嗎？
+        </p>
+        <a href="講師如何用Claude-Code-完整手冊.pdf" download class="download-btn" style="margin-top: 12px; background: linear-gradient(135deg, var(--card-border), var(--gray-600));">
+          順便下載「企業講師篇」
+        </a>
+      </div>
+
+      <!-- 混合狀態：有下載 + 有預約 -->
+      <div id="modalBoth" style="display:none;">
+        <div class="success-icon" style="background: linear-gradient(135deg, var(--green), #28a745);">&#10003;</div>
+        <h2>手冊已準備好！</h2>
+        <p>
+          點擊下方按鈕立即下載「企業講師篇」。
+        </p>
+        <a href="講師如何用Claude-Code-完整手冊.pdf" download class="download-btn" id="downloadLinkBoth">
+          立即下載 PDF 手冊
+        </a>
+        <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--card-border);">
+          <p style="color: var(--orange); font-size: 0.9rem;">
+            &#128276; 你還勾選了「<strong id="bothUpcomingList"></strong>」<br>
+            這些手冊還在製作中，上線後會第一時間寄到你的信箱！
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ── 手冊設定 ──
+    const MANUALS = {
+      trainer:   { name: '企業講師篇', status: 'available', file: '講師如何用Claude-Code-完整手冊.pdf' },
+      planner:   { name: '企劃人員篇', status: 'upcoming',  file: null },
+      sales:     { name: '業務 / BD 篇', status: 'upcoming',  file: null },
+      marketing: { name: '行銷人篇',   status: 'upcoming',  file: null },
+      all:       { name: '全系列',     status: 'upcoming',  file: null }
+    };
+
+    // ── Webhook URL（n8n 或 Google Apps Script）──
+    const WEBHOOK_URL = 'YOUR_WEBHOOK_URL_HERE';
+
+    // ── 本地端 API（開發用，線上版不送）──
+    const LOCAL_API_URL = null;
+
+    // ── 取得勾選的手冊 ──
+    function getSelectedManuals() {
+      const checked = document.querySelectorAll('input[name="manuals"]:checked');
+      return Array.from(checked).map(cb => cb.value);
+    }
+
+    // ── 表單 UI 更新 ──
+    function updateFormUI() {
+      const selected = getSelectedManuals();
+      const notice = document.getElementById('upcomingNotice');
+      const btn = document.getElementById('submitBtn');
+
+      const hasAvailable = selected.some(k => MANUALS[k]?.status === 'available');
+      const hasUpcoming = selected.some(k => MANUALS[k]?.status === 'upcoming');
+
+      if (selected.length === 0) {
+        notice.style.display = 'none';
+        btn.textContent = '請先選擇手冊';
+      } else if (hasAvailable && hasUpcoming) {
+        notice.style.display = 'flex';
+        btn.textContent = '下載手冊 + 預約通知';
+      } else if (hasAvailable) {
+        notice.style.display = 'none';
+        btn.textContent = '立即免費下載手冊';
+      } else {
+        notice.style.display = 'flex';
+        btn.textContent = '送出，上線時通知我';
+      }
+    }
+
+    // ── 表單送出 ──
+    async function handleSubmit(e) {
+      e.preventDefault();
+
+      const btn = document.getElementById('submitBtn');
+      const form = document.getElementById('leadForm');
+      const originalText = btn.textContent;
+
+      const formData = new FormData(form);
+      const selected = getSelectedManuals();
+
+      if (selected.length === 0) {
+        alert('請至少勾選一本手冊！');
+        btn.disabled = false;
+        btn.textContent = '請先選擇手冊';
+        return;
+      }
+
+      const selectedNames = selected.map(k => MANUALS[k]?.name || k);
+      const hasAvailable = selected.some(k => MANUALS[k]?.status === 'available');
+      const hasUpcoming = selected.some(k => MANUALS[k]?.status === 'upcoming');
+      const upcomingNames = selected
+        .filter(k => MANUALS[k]?.status === 'upcoming')
+        .map(k => MANUALS[k]?.name);
+
+      const data = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        company: formData.get('company') || '',
+        title: formData.get('title') || '',
+        manuals: selected,
+        manual_names: selectedNames,
+        has_available: hasAvailable,
+        has_upcoming: hasUpcoming,
+        upcoming_names: upcomingNames,
+        subscribe: formData.get('subscribe') ? 'yes' : 'no',
+        timestamp: new Date().toISOString(),
+        source: 'claude-code-lead-magnet'
+      };
+
+      btn.disabled = true;
+      btn.textContent = '處理中...';
+
+      try {
+        // 1. 送到 webhook（n8n 或 Google Apps Script）
+        if (WEBHOOK_URL && WEBHOOK_URL !== 'YOUR_WEBHOOK_URL_HERE') {
+          fetch(WEBHOOK_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+            mode: 'no-cors'
+          }).catch(() => {});
+        }
+
+        // 2. 送到本地端 API（開發用）
+        if (LOCAL_API_URL) {
+          fetch(LOCAL_API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          }).catch(() => {});
+        }
+
+        // 3. localStorage 備份
+        const leads = JSON.parse(localStorage.getItem('leadMagnetData') || '[]');
+        leads.push(data);
+        localStorage.setItem('leadMagnetData', JSON.stringify(leads));
+
+      } catch (err) {
+        // 靜默失敗，不影響用戶體驗
+      }
+
+      // 根據勾選狀態顯示不同 Modal
+      const modalAvail = document.getElementById('modalAvailable');
+      const modalUp = document.getElementById('modalUpcoming');
+      const modalBoth = document.getElementById('modalBoth');
+
+      modalAvail.style.display = 'none';
+      modalUp.style.display = 'none';
+      modalBoth.style.display = 'none';
+
+      if (hasAvailable && hasUpcoming) {
+        // 同時有可下載和即將推出
+        modalBoth.style.display = 'block';
+        document.getElementById('bothUpcomingList').textContent = upcomingNames.join('、');
+      } else if (hasAvailable) {
+        // 只有可下載的
+        modalAvail.style.display = 'block';
+      } else {
+        // 只有即將推出的
+        modalUp.style.display = 'block';
+        document.getElementById('upcomingManualName').textContent = upcomingNames.join('、');
+      }
+
+      document.getElementById('successModal').classList.add('active');
+      form.reset();
+      btn.disabled = false;
+      btn.textContent = '請先選擇手冊';
+    }
+
+    function closeModal() {
+      document.getElementById('successModal').classList.remove('active');
+    }
+
+    document.getElementById('successModal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
