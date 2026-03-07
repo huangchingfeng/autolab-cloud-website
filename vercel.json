@@ -12,6 +12,8 @@
   },
   "routes": [
     { "handle": "filesystem" },
+    { "src": "/claude-code-manual/?", "dest": "/claude-code-manual/index.html" },
+    { "src": "/claude-code-manual/(.*)", "dest": "/claude-code-manual/$1" },
     { "src": "/gifts/(.*)", "dest": "/gifts/$1" },
     { "src": "/api/test", "dest": "/api/test" },
     { "src": "/api/(.*)", "dest": "/api" },
