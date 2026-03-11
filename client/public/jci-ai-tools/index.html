@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026 AI Tools Cheatsheet | AI 工具懒人包 | JCI AI 营销实战营</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cyan: #00D4FF;
+      --cyan-dark: #0099BB;
+      --navy-1: #0A1628;
+      --navy-2: #0F1D32;
+      --navy-3: #152035;
+      --orange: #FF6B35;
+      --white: #FFFFFF;
+      --gray-200: #C7C7CC;
+      --gray-400: #8E8E93;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--navy-1);
+      color: var(--gray-200);
+      font-family: 'Noto Sans SC', 'Inter', sans-serif;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* Language Toggle */
+    .lang-toggle {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 100;
+      display: flex;
+      background: var(--navy-2);
+      border: 1px solid rgba(0,212,255,0.2);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .lang-btn {
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: transparent;
+      color: var(--gray-400);
+      font-family: inherit;
+    }
+
+    .lang-btn.active {
+      background: rgba(0,212,255,0.15);
+      color: var(--cyan);
+    }
+
+    .lang-btn:hover:not(.active) {
+      color: var(--white);
+    }
+
+    /* Bilingual text */
+    .en { display: block; }
+    .zh { display: block; }
+
+    body.lang-zh .en { display: none; }
+    body.lang-en .zh { display: none; }
+
+    .sub-text {
+      font-size: 0.85em;
+      opacity: 0.65;
+      font-weight: 400;
+      margin-top: 2px;
+    }
+
+    body.lang-zh .sub-text.zh-sub,
+    body.lang-en .sub-text.en-sub { display: none; }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 60px 20px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(0,212,255,0.1);
+      border: 1px solid rgba(0,212,255,0.3);
+      color: var(--cyan);
+      padding: 6px 18px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 6px;
+      line-height: 1.2;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--cyan), #33DDFF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(18px, 3vw, 24px);
+      color: var(--gray-400);
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      font-size: 15px;
+      color: var(--gray-400);
+      max-width: 600px;
+      margin: 0 auto 30px;
+      line-height: 1.6;
+    }
+
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .stat { text-align: center; }
+
+    .stat-number {
+      font-family: 'Inter', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--cyan);
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--gray-400);
+    }
+
+    /* Container */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    /* Category */
+    .category { margin-bottom: 40px; }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(0,212,255,0.15);
+    }
+
+    .category-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .cat-chat { background: rgba(0,212,255,0.15); }
+    .cat-search { background: rgba(255,107,53,0.15); }
+    .cat-content { background: rgba(139,92,246,0.15); }
+    .cat-productivity { background: rgba(16,185,129,0.15); }
+    .cat-visual { background: rgba(236,72,153,0.15); }
+    .cat-sales { background: rgba(245,158,11,0.15); }
+
+    .category-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.3;
+    }
+
+    .category-title-sub {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--gray-400);
+    }
+
+    .category-subtitle {
+      font-size: 13px;
+      color: var(--gray-400);
+      line-height: 1.4;
+    }
+
+    /* Tool Cards */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 12px;
+    }
+
+    .tool-card {
+      background: var(--navy-2);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 18px;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      cursor: pointer;
+    }
+
+    .tool-card:hover {
+      border-color: rgba(0,212,255,0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+
+    .tool-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .tool-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .tool-tag {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .tag-free { background: rgba(16,185,129,0.15); color: #10B981; }
+    .tag-freemium { background: rgba(0,212,255,0.1); color: var(--cyan); }
+    .tag-paid { background: rgba(255,107,53,0.1); color: var(--orange); }
+
+    .tool-desc {
+      font-size: 14px;
+      color: var(--gray-200);
+      margin-bottom: 4px;
+      line-height: 1.5;
+    }
+
+    .tool-desc-en {
+      font-size: 13px;
+      color: var(--gray-400);
+      margin-bottom: 10px;
+      line-height: 1.4;
+      font-style: italic;
+    }
+
+    .tool-url {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--cyan);
+      opacity: 0.7;
+      word-break: break-all;
+    }
+
+    .tool-usecase {
+      display: inline-block;
+      font-size: 11px;
+      background: rgba(255,255,255,0.05);
+      color: var(--gray-400);
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-top: 8px;
+    }
+
+    /* Pro Tips */
+    .pro-tip {
+      background: linear-gradient(135deg, rgba(0,212,255,0.08), rgba(255,107,53,0.05));
+      border: 1px solid rgba(0,212,255,0.2);
+      border-radius: 14px;
+      padding: 24px;
+      margin: 40px 0;
+    }
+
+    .pro-tip h3 {
+      color: var(--cyan);
+      font-size: 16px;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .pro-tip ul { list-style: none; padding: 0; }
+
+    .pro-tip li {
+      padding: 8px 0;
+      padding-left: 24px;
+      position: relative;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .pro-tip li::before {
+      content: '\2726';
+      position: absolute;
+      left: 0;
+      color: var(--cyan);
+    }
+
+    .tip-en {
+      font-size: 13px;
+      color: var(--gray-400);
+      font-style: italic;
+      margin-top: 2px;
+    }
+
+    /* Workflow */
+    .workflow-section {
+      background: var(--navy-2);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px;
+      padding: 28px;
+      margin: 40px 0;
+    }
+
+    .workflow-section h3 {
+      color: var(--white);
+      font-size: 17px;
+      margin-bottom: 6px;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .workflow-section .workflow-subtitle {
+      color: var(--gray-400);
+      font-size: 14px;
+      text-align: center;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .workflow-steps {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .workflow-step {
+      text-align: center;
+      flex: 1;
+      min-width: 110px;
+      max-width: 150px;
+    }
+
+    .step-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(0,212,255,0.15);
+      color: var(--cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      margin: 0 auto 8px;
+    }
+
+    .step-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 2px;
+    }
+
+    .step-title-en {
+      font-size: 11px;
+      color: var(--gray-400);
+      margin-bottom: 4px;
+    }
+
+    .step-tool {
+      font-size: 12px;
+      color: var(--cyan);
+    }
+
+    .arrow {
+      display: flex;
+      align-items: center;
+      color: var(--gray-400);
+      font-size: 20px;
+    }
+
+    /* Lead Form */
+    .lead-form-section {
+      background: linear-gradient(135deg, rgba(0,212,255,0.06), rgba(255,107,53,0.04));
+      border: 1px solid rgba(0,212,255,0.25);
+      border-radius: 16px;
+      padding: 36px 28px;
+      margin: 40px 0;
+      text-align: center;
+    }
+
+    .lead-form-section h3 {
+      color: var(--white);
+      font-size: 20px;
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+
+    .lead-form-section .form-subtitle {
+      color: var(--gray-400);
+      font-size: 14px;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+
+    .lead-form-section .form-desc {
+      color: var(--gray-200);
+      font-size: 15px;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .lead-form {
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray-200);
+      margin-bottom: 6px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--navy-2);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      color: var(--white);
+      font-size: 15px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input::placeholder {
+      color: var(--gray-400);
+    }
+
+    .form-group input:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(0,212,255,0.1);
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 14px 24px;
+      background: linear-gradient(135deg, var(--cyan), var(--cyan-dark));
+      color: var(--navy-1);
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 6px;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,212,255,0.3);
+    }
+
+    .form-note {
+      font-size: 12px;
+      color: var(--gray-400);
+      margin-top: 12px;
+    }
+
+    .success-message {
+      display: none;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .success-message .success-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+
+    .success-message h4 {
+      color: var(--cyan);
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .success-message p {
+      color: var(--gray-200);
+      font-size: 14px;
+    }
+
+    /* CTA */
+    .cta-section {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 40px 20px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .footer-logo {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--cyan);
+      letter-spacing: 3px;
+      margin-bottom: 8px;
+    }
+
+    .footer p {
+      font-size: 13px;
+      color: var(--gray-400);
+    }
+
+    .footer a {
+      color: var(--cyan);
+      text-decoration: none;
+    }
+
+    /* Trusted By */
+    .trusted-by {
+      text-align: center;
+      padding: 30px 20px;
+      margin-bottom: 20px;
+    }
+
+    .trusted-title {
+      font-size: 13px;
+      color: var(--gray-400);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    .trusted-logos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px 32px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .trusted-logos span {
+      font-size: 13px;
+      color: var(--gray-400);
+      opacity: 0.6;
+      font-weight: 500;
+    }
+
+    @media (max-width: 600px) {
+      .hero { padding: 50px 16px 30px; }
+      .stats-row { gap: 24px; }
+      .tools-grid { grid-template-columns: 1fr; }
+      .workflow-steps { flex-direction: column; align-items: center; }
+      .arrow { transform: rotate(90deg); }
+      .lang-toggle { top: 10px; right: 10px; }
+      .lang-btn { padding: 6px 12px; font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Language Toggle -->
+  <div class="lang-toggle">
+    <button class="lang-btn active" onclick="setLang('both')">双语 Bilingual</button>
+    <button class="lang-btn" onclick="setLang('zh')">中文</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="badge">JCI AI Marketing Bootcamp · Exclusive Bonus</div>
+    <h1>2026 <span>AI Tools Cheatsheet</span></h1>
+    <div class="hero-subtitle">AI 工具懒人包</div>
+    <p>
+      <span class="zh">精选 20+ 个最实用的 AI 工具，从聊天助手到自动化营销，每一个都能直接用在你的生意上</span>
+      <span class="en">20+ handpicked AI tools — from chat assistants to marketing automation — ready to use in your business today</span>
+    </p>
+    <div class="stats-row">
+      <div class="stat">
+        <div class="stat-number">20+</div>
+        <div class="stat-label">
+          <span class="zh">精选工具</span>
+          <span class="en">Curated Tools</span>
+        </div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">6</div>
+        <div class="stat-label">
+          <span class="zh">应用场景</span>
+          <span class="en">Categories</span>
+        </div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">70%</div>
+        <div class="stat-label">
+          <span class="zh">免费可用</span>
+          <span class="en">Free to Use</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <!-- ====== Category 1: AI Chat Assistants ====== -->
+    <div class="category">
+      <div class="category-header">
+        <div class="category-icon cat-chat">💬</div>
+        <div>
+          <div class="category-title">
+            AI 聊天助手
+            <span class="category-title-sub">AI Chat Assistants</span>
+          </div>
+          <div class="category-subtitle">
+            <span class="zh">你的 AI 军师，问什么都行</span>
+            <span class="en">Your AI advisor — ask anything</span>
+          </div>
+        </div>
+      </div>
+      <div class="tools-grid">
+        <a class="tool-card" href="https://chatgpt.com" target="_blank">
+          <div class="tool-top">
+            <span class="tool-name">ChatGPT</span>
+            <span class="tool-tag tag-freemium">Freemium</span>
+          </div>
+          <div class="tool-desc">最多人用的 AI 助手，写文案、分析数据、策略规划全能选手</div>
+          <div class="tool-desc-en">The most popular AI assistant — copywriting, data analysis, strategy planning</div>
+          <div class="tool-url">chatgpt.com</div>
+          <div class="tool-usecase">💼 Sales copy · Client analysis · Strategy</div>
+        </a>
+        <a class="tool-card" href="https://gemini.google.com" target="_blank">
+          <div class="tool-top">
+            <span class="tool-name">Gemini</span>
+            <span class="tool-tag tag-free">Free</span>
+          </div>
+          <div class="tool-desc">Google 出品，擅长搜索整合 + 多模态，能直接读 Google Docs / Sheets</div>
+          <div class="tool-desc-en">By Google — great at search + multimodal, reads Google Docs & Sheets directly</div>
+          <div class="tool-url">gemini.google.com</div>
+          <div class="tool-usecase">💼 Research · Reports · Doc analysis</div>
+        </a>
+        <a class="tool-card" href="https://claude.ai" target="_blank">
+          <div class="tool-top">
+            <span class="tool-name">Claude AI</span>
+            <span class="tool-tag tag-freemium">Freemium</span>
+          </div>
+          <div class="tool-desc">Anthropic 出品，长文处理能力超强，适合深度分析与策略规划</div>
+          <div class="tool-desc-en">By Anthropic — excels at long documents, deep analysis & strategic planning</div>
+          <div class="tool-url">claude.ai</div>
+          <div class="tool-usecase">💼 Deep analysis · Contracts · Strategy</div>
+        </a>
+        <a class="tool-card" href="https://grok.com" target="_blank">
+          <div class="tool-top">
+            <span class="tool-name">Grok</span>
+            <span class="tool-tag tag-free">Free</span>
+          </div>
+          <div class="tool-desc">X (Twitter) 旗下 AI，即时获取社交媒体趋势和热点话题</div>
+          <div class="tool-desc-en">By X (Twitter) — real-time social media trends & hot topics</div>
+          <div class="tool-url">grok.com</div>
+          <div class="tool-usecase">💼 Trends · Social insights · Viral content</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- ====== Category 2: AI Search ====== -->
+    <div class="category">
+      <div class="category-header">
+        <div class="category-icon cat-search">🔍</div>
+        <div>
+          <div class="category-title">
+            AI 搜索引擎
+            <span class="category-title-sub">AI Search Engines</span>
+          </div>
+          <div class="category-subtitle">
+            <span class="zh">告别传统搜索，问一句给你答案</span>
+            <span class="en">Beyond Google — ask a question, get a complete answer</span>
+          </div>
+        </div>
+      </div>
+      <div class="tools-grid">
+        <a class="tool-card" href="https://www.perplexity.ai" target="_blank">
+          <div class="tool-top">
+            <span class="tool-name">Perplexity</span>
+            <span class="tool-tag tag-freemium">Freemium</span>
+          </div>
+          <div class="tool-desc">AI 搜索神器！问一个问题，帮你搜全网、整理好答案，附带来源</div>
+          <div class="tool-desc-en">AI search engine — ask anything, get organized answers with sources</div>
+          <div class="tool-url">perplexity.ai</div>
+          <div class="tool-usecase">💼 Market research · Competitor analysis · Reports</div>
+        </a>
+        <a class="tool-card" href="https://notebooklm.google.com" target="_blank">
+          <div class="tool-top">
+            <span class="tool-name">NotebookLM</span>
+            <span class="tool-tag tag-free">Free</span>
+          </div>
+          <div class="tool-desc">上传文件后让 AI 帮你整理、摘要、问答，还能自动生成 Podcast</div>
+          <div class="tool-desc-en">Upload docs, AI summarizes & answers questions — even generates podcasts</div>
+          <div class="tool-url">notebooklm.google.com</div>
+          <div class="tool-usecase">💼 Knowledge base · Summaries · Meeting notes</div>
+        </a>
+        <a class="tool-card" href="https://aistudio.google.com" target="_blank">
+          <div class="tool-top">
+            <span class="tool-name">Google AI Studio</span>
+            <span class="tool-tag tag-free">Free</span>
+          </div>
+          <div class="tool-desc">Google 最强 AI 模型的免费游乐场，可以测试各种 AI 功能</div>
+          <div class="tool-desc-en">Free playground for Google's most powerful AI models</div>
+          <div class="tool-url">aistudio.google.com</div>
+          <div class="tool-usecase">💼 AI testing · Prototyping · Advanced use</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- ====== Category 3: Content Creation ====== -->
+    <div class="category">
+      <div class="category-header">
+        <div class="category-icon cat-content">✍️</div>
+        <div>
+          <div class="category-title">
+            内容创作与营销
+            <span class="category-title-sub">Content Creation & Marketing</span>
+          </div>
+          <div class="category-subtitle">
+            <span class="zh">10 分钟搞定一篇专业文案</span>
+            <span class="en">Professional copy in 10 minutes</span>
+          </div>
+        </div>
+      </div>
+      <div class="tools-grid">
+        <a class="tool-card" href="https://gamma.app" target="_blank">
+          <div class="tool-top">
+            <span class="tool-name">Gamma</span>
+            <span class="tool-tag tag-freemium">Freemium</span>
+          </div>
+          <div class="tool-desc">输入主题，AI 自动生成精美简报 / 网页 / 文档，超省时间</div>
+          <div class="tool-desc-en">Enter a topic, AI generates beautiful slides / websites / docs instantly</div>
+          <div class="tool-url">gamma.app</div>
+          <div class="tool-usecase">💼 Proposals · Product intros · Sales decks</div>
+        </a>
+        <a class="tool-card" href="https://www.canva.com" target="_blank">
+          <div class="tool-top">
+            <span class="tool-name">Canva</span>
+            <span class="tool-tag tag-freemium">Freemium</span>
+          </div>
+          <div class="tool-desc">设计小白的救星！AI 帮你做海报、社群图片、影片，模板超多</div>
+          <div class="tool-desc-en">Design made easy — AI-powered posters, social graphics, videos with tons of templates</div>
+          <div class="tool-url">canva.com</div>
+          <div class="tool-usecase">💼 Social media · Posters · Biz cards · Reels</div>
+        </a>
+        <a class="tool-card" href="https://www.copy.ai" target="_blank">
+          <div class="tool-top">
+            <span class="tool-name">Copy.ai</span>
+            <span class="tool-tag tag-freemium">Freemium</span>
+          </div>
+          <div class="tool-desc">专为营销文案打造，广告文案、产品描述、Email 一键生成</div>
+          <div class="tool-desc-en">Built for marketing copy — ads, product descriptions, emails in one click</div>
+          <div class="tool-url">copy.ai</div>
+          <div class="tool-usecase">💼 Ad copy · Product desc · Email campaigns</div>
+        </a>
+        <a class="tool-card" href="https://www.descript.com" target="_blank">
+          <div class="tool-top">
+            <span class="tool-name">Descript</span>
+            <span class="tool-tag tag-freemium">Freemium</span>
+          </div>
+          <div class="tool-desc">像编辑文字一样编辑影片！自动字幕、去杂音、AI 剪辑</div>
+          <div class="tool-desc-en">Edit video like editing text — auto subtitles, noise removal, AI editing</div>
+          <div class="tool-url">descript.com</div>
+          <div class="tool-usecase">💼 Video editing · Podcast · Recordings</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- ====== Category 4: Productivity & Automation ====== -->
+    <div class="category">
+      <div class="category-header">
+        <div class="category-icon cat-productivity">⚡</div>
+        <div>
+          <div class="category-title">
+            效率与自动化
+            <span class="category-title-sub">Productivity & Automation</span>
+          </div>
+          <div class="category-subtitle">
+            <span class="zh">让 AI 帮你做重复的事</span>
+            <span class="en">Let AI handle the repetitive work</span>
+          </div>
+        </div>
+      </div>
+      <div class="tools-grid">
+        <a class="tool-card" href="https://manus.im" target="_blank">
+          <div class="tool-top">
+            <span class="tool-name">Manus</span>
+            <span class="tool-tag tag-paid">Paid</span>
+          </div>
+          <div class="tool-desc">全自动 AI 代理，能帮你上网搜索、整理资料、写报告，像请了个助理</div>
+          <div class="tool-desc-en">Fully autonomous AI agent — browses web, compiles data, writes reports for you</div>
+          <div class="tool-url">manus.im</div>
+          <div class="tool-usecase">💼 Research · Report writing · Data compilation</div>
+        </a>
+        <a class="tool-card" href="https://zapier.com" target="_blank">
+          <div class="tool-top">
+            <span class="tool-name">Zapier</span>
+            <span class="tool-tag tag-freemium">Freemium</span>
+          </div>
+          <div class="tool-desc">连接 5000+ 个 App 的自动化平台，客户填表单自动发 Email、存 CRM</div>
+          <div class="tool-desc-en">Connects 5000+ apps — auto-send emails, sync CRM when clients fill forms</div>
+          <div class="tool-url">zapier.com</div>
+          <div class="tool-usecase">💼 Auto follow-up · Data sync · Workflows</div>
+        </a>
+        <a class="tool-card" href="https://v2.chateverywhere.app/zh/meeting-transcription" target="_blank">
+          <div class="tool-top">
+            <span class="tool-name">Meeting Helper</span>
+            <span class="tool-tag tag-free">Free</span>
+          </div>
+          <div class="tool-desc">会议录音一键变文字记录，再用 AI 整理重点和行动项目</div>
+          <div class="tool-desc-en">Turn meeting recordings into text, then AI extracts key points & action items</div>
+          <div class="tool-url">chateverywhere.app</div>
+          <div class="tool-usecase">💼 Meeting notes · Transcription · Action tracking</div>
+        </a>
+        <a class="tool-card" href="https://n8n.io" target="_blank">
+          <div class="tool-top">
+            <span class="tool-name">n8n</span>
+            <span class="tool-tag tag-free">Free & Open Source</span>
+          </div>
+          <div class="tool-desc">进阶自动化工作流引擎，比 Zapier 更灵活，可以自己部署</div>
+          <div class="tool-desc-en">Advanced workflow automation — more flexible than Zapier, self-hostable</div>
+          <div class="tool-url">n8n.io</div>
+          <div class="tool-usecase">💼 Complex workflows · AI pipelines · Custom automation</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- ====== Category 5: AI Image & Visual ====== -->
+    <div class="category">
+      <div class="category-header">
+        <div class="category-icon cat-visual">🎨</div>
+        <div>
+          <div class="category-title">
+            AI 图像与视觉
+            <span class="category-title-sub">AI Image & Visual</span>
+          </div>
+          <div class="category-subtitle">
+            <span class="zh">不会设计也能出图</span>
+            <span class="en">Create stunning visuals — no design skills needed</span>
+          </div>
+        </div>
+      </div>
+      <div class="tools-grid">
+        <a class="tool-card" href="https://www.midjourney.com" target="_blank">
+          <div class="tool-top">
+            <span class="tool-name">Midjourney</span>
+            <span class="tool-tag tag-paid">Paid</span>
+          </div>
+          <div class="tool-desc">AI 绘图天花板，输入文字描述就能生成超高质量的图片</div>
+          <div class="tool-desc-en">The gold standard of AI art — describe it in words, get stunning images</div>
+          <div class="tool-url">midjourney.com</div>
+          <div class="tool-usecase">💼 Product shots · Branding · Concept art</div>
+        </a>
+        <a class="tool-card" href="https://ideogram.ai" target="_blank">
+          <div class="tool-top">
+            <span class="tool-name">Ideogram</span>
+            <span class="tool-tag tag-freemium">Freemium</span>
+          </div>
+          <div class="tool-desc">擅长生成带文字的图片（Logo、海报），其他 AI 做不到的它可以</div>
+          <div class="tool-desc-en">Best at generating images WITH text (logos, posters) — what others can't do</div>
+          <div class="tool-url">ideogram.ai</div>
+          <div class="tool-usecase">💼 Logo drafts · Text posters · Social graphics</div>
+        </a>
+        <a class="tool-card" href="https://www.remove.bg" target="_blank">
+          <div class="tool-top">
+            <span class="tool-name">Remove.bg</span>
+            <span class="tool-tag tag-free">Free</span>
+          </div>
+          <div class="tool-desc">一秒去背景！产品图、人物照片，上传就自动去背</div>
+          <div class="tool-desc-en">Remove backgrounds in 1 second — upload product or portrait photos, done</div>
+          <div class="tool-url">remove.bg</div>
+          <div class="tool-usecase">💼 Product cutouts · Portraits · E-commerce</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- ====== Category 6: AI Sales ====== -->
+    <div class="category">
+      <div class="category-header">
+        <div class="category-icon cat-sales">🎯</div>
+        <div>
+          <div class="category-title">
+            AI 销售利器
+            <span class="category-title-sub">AI Sales Powertools</span>
+          </div>
+          <div class="category-subtitle">
+            <span class="zh">让成交更有效率</span>
+            <span class="en">Close deals faster & smarter</span>
+          </div>
+        </div>
+      </div>
+      <div class="tools-grid">
+        <a class="tool-card" href="https://www.hubspot.com" target="_blank">
+          <div class="tool-top">
+            <span class="tool-name">HubSpot CRM</span>
+            <span class="tool-tag tag-freemium">Freemium</span>
+          </div>
+          <div class="tool-desc">免费 CRM 系统 + AI 功能，管理客户、追踪销售、自动发送 Email</div>
+          <div class="tool-desc-en">Free CRM + AI features — manage clients, track sales, auto-send emails</div>
+          <div class="tool-url">hubspot.com</div>
+          <div class="tool-usecase">💼 CRM · Sales funnel · Email automation</div>
+        </a>
+        <a class="tool-card" href="https://www.beautiful.ai" target="_blank">
+          <div class="tool-top">
+            <span class="tool-name">Beautiful.ai</span>
+            <span class="tool-tag tag-paid">Paid</span>
+          </div>
+          <div class="tool-desc">AI 自动排版的简报工具，怎么做都好看，提案用它准没错</div>
+          <div class="tool-desc-en">AI auto-layout presentations — always looks great, perfect for proposals</div>
+          <div class="tool-url">beautiful.ai</div>
+          <div class="tool-usecase">💼 Proposals · Sales decks · Company intro</div>
+        </a>
+        <a class="tool-card" href="https://www.loom.com" target="_blank">
+          <div class="tool-top">
+            <span class="tool-name">Loom</span>
+            <span class="tool-tag tag-freemium">Freemium</span>
+          </div>
+          <div class="tool-desc">录屏 + 讲解神器，录一段个人化视频给客户，比 Email 更有温度</div>
+          <div class="tool-desc-en">Screen recording + narration — send personalized videos, warmer than email</div>
+          <div class="tool-url">loom.com</div>
+          <div class="tool-usecase">💼 Client comms · Product demo · Training</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Pro Tips -->
+    <div class="pro-tip">
+      <h3>
+        💡 Coach Feng's AI Principles<br>
+        <span style="font-size: 14px;">阿峰老师的 AI 心法</span>
+      </h3>
+      <ul>
+        <li>
+          <strong>你是机长，AI 是机组人员</strong>
+          <div class="tip-en">You are the Captain, AI is your crew — you make decisions, AI executes</div>
+        </li>
+        <li>
+          <strong>不要只用一个工具，要串起来</strong>
+          <div class="tip-en">Don't use just one tool — chain them: ChatGPT drafts → Perplexity researches → Gamma presents</div>
+        </li>
+        <li>
+          <strong>先从免费版开始</strong>
+          <div class="tip-en">Start with free versions — upgrade only when you outgrow them</div>
+        </li>
+        <li>
+          <strong>每天用 10 分钟：会用、懂用、好用、每天用</strong>
+          <div class="tip-en">Use AI 10 mins daily — habit beats skill. Learn it, know it, love it, use it daily!</div>
+        </li>
+        <li>
+          <strong>给 AI 好的指令</strong>
+          <div class="tip-en">Give AI great prompts — tell it who you are, what you need, who it's for, and the style</div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Workflow Example -->
+    <div class="workflow-section">
+      <h3>🔄 实战案例：AI 帮你 30 分钟搞定一份客户提案</h3>
+      <div class="workflow-subtitle">Real Example: Create a Client Proposal in 30 Minutes with AI</div>
+      <div class="workflow-steps">
+        <div class="workflow-step">
+          <div class="step-num">1</div>
+          <div class="step-title">调研客户</div>
+          <div class="step-title-en">Research</div>
+          <div class="step-tool">Perplexity</div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="workflow-step">
+          <div class="step-num">2</div>
+          <div class="step-title">写提案内容</div>
+          <div class="step-title-en">Draft</div>
+          <div class="step-tool">ChatGPT / Claude</div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="workflow-step">
+          <div class="step-num">3</div>
+          <div class="step-title">做成简报</div>
+          <div class="step-title-en">Present</div>
+          <div class="step-tool">Gamma</div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="workflow-step">
+          <div class="step-num">4</div>
+          <div class="step-title">录段说明</div>
+          <div class="step-title-en">Explain</div>
+          <div class="step-tool">Loom</div>
+        </div>
+        <div class="arrow">→</div>
+        <div class="workflow-step">
+          <div class="step-num">5</div>
+          <div class="step-title">自动跟进</div>
+          <div class="step-title-en">Follow Up</div>
+          <div class="step-tool">HubSpot</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lead Capture Form -->
+    <div class="lead-form-section" id="lead-form-section">
+      <h3>
+        <span class="zh">想了解更多？免费获取完整 AI 实战指南</span>
+        <span class="en">Want to Learn More? Get the Full AI Playbook Free</span>
+      </h3>
+      <div class="form-subtitle">
+        <span class="zh">留下您的姓名和 Email，我们会将完整资料发送给您</span>
+        <span class="en">Leave your name and email — we'll send you the complete materials</span>
+      </div>
+      <div class="form-desc">
+        <span class="zh">包含：详细工具教程、Prompt 模板包、实战案例手册</span>
+        <span class="en">Includes: detailed tool tutorials, prompt template pack, real-world case studies</span>
+      </div>
+
+      <form class="lead-form" id="leadForm" action="https://formsubmit.co/ai@autolab.cloud" method="POST">
+        <!-- FormSubmit config -->
+        <input type="hidden" name="_subject" value="[JCI AI Bootcamp] New Lead - AI Tools Cheatsheet">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="text" name="_honey" style="display:none">
+        <input type="hidden" name="_next" value="https://www.autolab.cloud/jci-ai-tools/">
+
+        <div class="form-group">
+          <label>
+            <span class="zh">姓名 Name</span>
+            <span class="en">Name</span>
+          </label>
+          <input type="text" name="name" placeholder="e.g. John Tan / 陈俊杰" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" name="email" placeholder="your@email.com" required>
+        </div>
+        <div class="form-group">
+          <label>
+            <span class="zh">手机号码 Phone（选填）</span>
+            <span class="en">Phone (optional)</span>
+          </label>
+          <input type="tel" name="phone" placeholder="e.g. +60 12-345 6789">
+        </div>
+        <button type="submit" class="submit-btn">
+          <span class="zh">免费获取完整资料</span>
+          <span class="en">Get Free Materials</span>
+        </button>
+        <div class="form-note">
+          <span class="zh">我们尊重您的隐私，不会发送垃圾邮件</span>
+          <span class="en">We respect your privacy — no spam, ever</span>
+        </div>
+      </form>
+
+      <div class="success-message" id="successMsg">
+        <div class="success-icon">&#10003;</div>
+        <h4>
+          <span class="zh">提交成功！</span>
+          <span class="en">Submitted Successfully!</span>
+        </h4>
+        <p>
+          <span class="zh">我们会尽快将完整资料发送到您的邮箱，请留意查收</span>
+          <span class="en">We'll send the complete materials to your inbox shortly</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Trusted By -->
+    <div class="trusted-by">
+      <div class="trusted-title">
+        <span class="zh">阿峰老师服务过的企业</span>
+        <span class="en">Trusted by Leading Companies</span>
+      </div>
+      <div class="trusted-logos">
+        <span>ASUS</span>
+        <span>SYSTEX</span>
+        <span>Shopee</span>
+        <span>Cathay Life</span>
+        <span>Nanshan Life</span>
+        <span>Hua Nan Bank</span>
+        <span>RICOH</span>
+        <span>TOTO</span>
+        <span>Mean Well</span>
+        <span>Polaris</span>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <p style="color: var(--gray-400); margin-bottom: 8px; font-size: 15px;">
+        <span class="zh">想学会怎么把这些工具串起来，真正用在你的生意上？</span>
+        <span class="en">Want to learn how to chain these tools for real business results?</span>
+      </p>
+      <p style="color: var(--white); font-size: 20px; font-weight: 700; margin-bottom: 8px;">
+        <span class="zh">JCI AI 营销实战营，手把手教你落地！</span>
+        <span class="en">JCI AI Marketing Bootcamp — Hands-on, Real Results!</span>
+      </p>
+      <p style="color: var(--gray-400); font-size: 14px; margin-top: 16px;">
+        <span class="zh">名额有限，立即联系主办方报名</span>
+        <span class="en">Limited seats — contact the organizer to register now</span>
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-logo">AUTOLAB</div>
+    <p>
+      <span class="zh">阿峰老师（黄敬峰）· 企业 AI 实战培训专家</span>
+      <span class="en">Coach Feng (Huang Jing-Feng) · Enterprise AI Training Expert</span>
+    </p>
+    <p style="margin-top: 8px;">
+      <a href="https://www.autolab.cloud" target="_blank">www.autolab.cloud</a>
+      &nbsp;·&nbsp; ai@autolab.cloud
+    </p>
+    <p style="margin-top: 16px; font-size: 12px; color: var(--gray-400);">
+      © 2026 Autolab.
+      <span class="zh">工具信息仅供参考，请以官方网站为准。</span>
+      <span class="en">Tool info is for reference only. Please verify on official websites.</span>
+    </p>
+  </footer>
+
+  <script>
+    function setLang(lang) {
+      const body = document.body;
+      body.classList.remove('lang-zh', 'lang-en');
+      if (lang !== 'both') {
+        body.classList.add('lang-' + lang);
+      }
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+
+    // Handle form submission with AJAX to show success message
+    const form = document.getElementById('leadForm');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+
+      fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          form.style.display = 'none';
+          document.getElementById('successMsg').style.display = 'block';
+          document.querySelector('.lead-form-section .form-desc').style.display = 'none';
+        } else {
+          alert('Oops! Something went wrong. Please try again.');
+        }
+      }).catch(() => {
+        // Fallback: if AJAX fails, submit normally
+        form.submit();
+      });
+    });
+  </script>
+
+</body>
+</html>
