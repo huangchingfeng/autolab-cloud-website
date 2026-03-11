@@ -15,6 +15,8 @@
     { "src": "/claude-code-manual/?", "dest": "/claude-code-manual/index.html" },
     { "src": "/claude-code-manual/(.*)", "dest": "/claude-code-manual/$1" },
     { "src": "/gifts/(.*)", "dest": "/gifts/$1" },
+    { "src": "/jci-ai-tools/?", "dest": "/jci-ai-tools/index.html" },
+    { "src": "/jci-ai-tools/(.*)", "dest": "/jci-ai-tools/$1" },
     { "src": "/api/test", "dest": "/api/test" },
     { "src": "/api/(.*)", "dest": "/api" },
     { "src": "/(.*)", "dest": "/index.html" }
