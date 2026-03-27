@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B2B 產品行銷與業務開發 AI 賦能實戰班 | 和椿科技</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ===== Reset & Base ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Noto Sans TC', 'Inter', sans-serif;
+            background: #0A1628;
+            color: #C7C7CC;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        a { color: #00D4FF; text-decoration: none; transition: color 0.2s; }
+        a:hover { color: #33DDFF; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+        /* ===== Navigation ===== */
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(10, 22, 40, 0.92); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+        }
+        .nav-container {
+            max-width: 1100px; margin: 0 auto; padding: 0 24px;
+            display: flex; align-items: center; justify-content: space-between; height: 64px;
+        }
+        .nav-logo { display: flex; align-items: center; gap: 10px; }
+        .logo-text { font-weight: 700; font-size: 1.1rem; color: #fff; }
+        .logo-badge {
+            background: linear-gradient(135deg, #00D4FF, #0099BB);
+            color: #0A1628; font-size: 0.75rem; font-weight: 700;
+            padding: 3px 10px; border-radius: 12px;
+        }
+        .nav-menu { display: flex; list-style: none; gap: 4px; }
+        .nav-menu a {
+            color: #C7C7CC; font-size: 0.85rem; padding: 6px 12px;
+            border-radius: 8px; transition: all 0.2s;
+        }
+        .nav-menu a:hover { color: #fff; background: rgba(0, 212, 255, 0.1); }
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
+        .hamburger span { width: 24px; height: 2px; background: #C7C7CC; border-radius: 2px; transition: 0.3s; }
+
+        /* ===== Hero ===== */
+        .hero {
+            position: relative; padding: 140px 0 80px;
+            background: linear-gradient(180deg, #0A1628 0%, #0F1D32 100%);
+            overflow: hidden;
+        }
+        .hero-bg-pattern {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.06) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 30%, rgba(255, 107, 53, 0.04) 0%, transparent 50%);
+        }
+        .hero-container { position: relative; text-align: center; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.25);
+            padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; color: #00D4FF;
+            margin-bottom: 24px;
+        }
+        .hero-title {
+            font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; color: #fff;
+            line-height: 1.3; margin-bottom: 16px;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #00D4FF, #33DDFF);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-subtitle { font-size: 1.1rem; color: #C7C7CC; margin-bottom: 32px; line-height: 1.8; }
+        .hero-stats {
+            display: flex; justify-content: center; align-items: center; gap: 32px;
+            flex-wrap: wrap; margin-bottom: 32px;
+        }
+        .stat-item { text-align: center; }
+        .stat-number { display: block; font-size: 2rem; font-weight: 800; color: #00D4FF; font-family: 'Inter', sans-serif; }
+        .stat-label { font-size: 0.85rem; color: #C7C7CC; }
+        .stat-divider { width: 1px; height: 40px; background: rgba(0, 212, 255, 0.2); }
+        .hero-info { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+        .info-item { display: flex; align-items: center; gap: 8px; font-size: 0.95rem; color: #C7C7CC; }
+        .info-icon { font-size: 1.2rem; }
+
+        /* ===== Sections Common ===== */
+        section { padding: 80px 0; }
+        .section-header { text-align: center; margin-bottom: 48px; }
+        .section-tag {
+            display: inline-block; background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.2); color: #00D4FF;
+            padding: 4px 14px; border-radius: 16px; font-size: 0.8rem; font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .section-title { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; color: #fff; margin-bottom: 12px; }
+        .section-desc { font-size: 1rem; color: #C7C7CC; max-width: 600px; margin: 0 auto; }
+
+        /* ===== Pain Points ===== */
+        .pain-points { background: #0A1628; }
+        .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-bottom: 40px; }
+        .pain-item {
+            display: flex; align-items: flex-start; gap: 14px;
+            background: #0F1D32; border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 20px; border-radius: 12px; transition: border-color 0.2s;
+        }
+        .pain-item:hover { border-color: rgba(0, 212, 255, 0.2); }
+        .pain-icon { font-size: 1.5rem; flex-shrink: 0; }
+        .pain-item p { font-size: 0.95rem; }
+        .solution-bridge { text-align: center; margin-top: 20px; }
+        .bridge-text { font-size: 1.1rem; line-height: 1.8; }
+        .highlight { color: #FF6B35; font-weight: 700; font-size: 1.2rem; }
+
+        /* ===== Features ===== */
+        .features { background: #0F1D32; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+        .feature-card {
+            background: #0A1628; border: 1px solid rgba(0, 212, 255, 0.1);
+            padding: 28px; border-radius: 16px; text-align: center; transition: transform 0.2s, border-color 0.2s;
+        }
+        .feature-card:hover { transform: translateY(-4px); border-color: rgba(0, 212, 255, 0.3); }
+        .feature-icon { font-size: 2rem; margin-bottom: 14px; }
+        .feature-card h3 { font-size: 1rem; color: #fff; margin-bottom: 8px; }
+        .feature-card p { font-size: 0.9rem; }
+
+        /* ===== Objectives ===== */
+        .objectives { background: #0F1D32; }
+        .objectives-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .objective-card {
+            background: #0A1628; border: 1px solid rgba(0, 212, 255, 0.1);
+            padding: 28px; border-radius: 16px; display: flex; gap: 20px;
+        }
+        .objective-number {
+            font-size: 2rem; font-weight: 900; color: rgba(0, 212, 255, 0.2);
+            font-family: 'Inter', sans-serif; flex-shrink: 0; line-height: 1;
+        }
+        .objective-content h3 { font-size: 1rem; color: #fff; margin-bottom: 8px; }
+        .objective-content p { font-size: 0.88rem; margin-bottom: 10px; }
+        .objective-list { list-style: none; }
+        .objective-list li { font-size: 0.85rem; padding: 3px 0; padding-left: 16px; position: relative; }
+        .objective-list li::before { content: ''; position: absolute; left: 0; top: 10px; width: 6px; height: 6px; border-radius: 50%; background: #00D4FF; }
+
+        /* ===== Curriculum ===== */
+        .curriculum { background: #0A1628; }
+        .schedule-title { font-size: 1.2rem; color: #fff; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid rgba(0, 212, 255, 0.15); }
+        .curriculum-card {
+            background: #0F1D32; border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px; padding: 24px; margin-bottom: 16px; transition: border-color 0.2s;
+        }
+        .curriculum-card:hover { border-color: rgba(0, 212, 255, 0.2); }
+        .time-badge {
+            display: inline-block; background: rgba(0, 212, 255, 0.1);
+            color: #00D4FF; font-size: 0.8rem; font-weight: 600;
+            padding: 4px 12px; border-radius: 8px; margin-bottom: 12px;
+            font-family: 'Inter', sans-serif;
+        }
+        .card-main h4 { font-size: 1.05rem; color: #fff; margin-bottom: 10px; }
+        .card-main ul { list-style: none; }
+        .card-main li { font-size: 0.9rem; padding: 4px 0; padding-left: 18px; position: relative; }
+        .card-main li::before { content: ''; position: absolute; left: 0; top: 12px; width: 5px; height: 5px; border-radius: 50%; background: #00D4FF; }
+        .card-output {
+            margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 0.88rem; color: #FF6B35;
+        }
+        .lunch-break {
+            text-align: center; padding: 20px; margin: 24px 0;
+            background: rgba(255, 107, 53, 0.06); border: 1px solid rgba(255, 107, 53, 0.15);
+            border-radius: 12px; font-size: 1rem; color: #FF6B35;
+        }
+
+        /* ===== Tools ===== */
+        .tools { background: #0F1D32; }
+        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+        .tool-card {
+            background: #0A1628; border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 24px; border-radius: 16px; text-align: center; transition: transform 0.2s;
+        }
+        .tool-card:hover { transform: translateY(-3px); }
+        .tool-logo { font-size: 2.2rem; margin-bottom: 10px; }
+        .tool-card h3 { font-size: 1rem; color: #fff; margin-bottom: 6px; }
+        .tool-card p { font-size: 0.85rem; margin-bottom: 10px; }
+        .tool-use {
+            display: inline-block; background: rgba(0, 212, 255, 0.1);
+            color: #00D4FF; font-size: 0.75rem; padding: 4px 10px; border-radius: 10px;
+            margin-bottom: 8px;
+        }
+        .tool-link {
+            display: inline-block; font-size: 0.8rem; color: #00D4FF; margin-top: 4px;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+        }
+        .tool-link:hover { border-color: #00D4FF; }
+
+        /* ===== Instructor ===== */
+        .instructor { background: #0A1628; }
+        .instructor-content { max-width: 700px; margin: 0 auto; text-align: center; }
+        .instructor-title { font-size: 1.1rem; color: #00D4FF; margin-bottom: 16px; font-weight: 600; }
+        .instructor-bio { font-size: 0.95rem; margin-bottom: 28px; line-height: 1.8; }
+        .instructor-stats { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-bottom: 28px; }
+        .instructor-stats .stat { text-align: center; }
+        .instructor-stats .stat-number { font-size: 1.8rem; font-weight: 800; color: #00D4FF; font-family: 'Inter'; }
+        .instructor-stats .stat-label { font-size: 0.8rem; color: #C7C7CC; display: block; }
+        .instructor-clients { margin-top: 20px; }
+        .instructor-clients h4 { font-size: 0.9rem; color: #fff; margin-bottom: 8px; }
+        .instructor-clients p { font-size: 0.85rem; line-height: 1.8; }
+
+        /* ===== Footer ===== */
+        .footer {
+            background: #070E1A; border-top: 1px solid rgba(0, 212, 255, 0.1);
+            padding: 40px 0; text-align: center;
+        }
+        .footer-content p { font-size: 0.85rem; margin-bottom: 4px; }
+        .footer-instructor { margin-top: 16px; font-size: 0.8rem; color: rgba(199, 199, 204, 0.6); }
+        .footer-links { margin-top: 16px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .footer-links a { font-size: 0.8rem; color: #00D4FF; }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .hamburger { display: flex; }
+            .nav-menu.active {
+                display: flex; flex-direction: column; position: absolute;
+                top: 64px; left: 0; right: 0; background: rgba(10, 22, 40, 0.98);
+                padding: 16px 24px; border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+            }
+            .hero-stats { gap: 20px; }
+            .stat-divider { display: none; }
+            .hero-info { flex-direction: column; align-items: center; }
+            .objective-card { flex-direction: column; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">AI 賦能實戰班</span>
+                <span class="logo-badge">和椿專屬</span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#features">課程特色</a></li>
+                <li><a href="#objectives">學習目標</a></li>
+                <li><a href="#curriculum">課程大綱</a></li>
+                <li><a href="#tools">工具介紹</a></li>
+                <li><a href="#instructor">講師介紹</a></li>
+            </ul>
+            <div class="hamburger" onclick="document.getElementById('navMenu').classList.toggle('active')">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg-pattern"></div>
+        <div class="container hero-container">
+            <div class="hero-badge">
+                <span>&#9733;</span>
+                <span>專為和椿科技設計</span>
+            </div>
+            <h1 class="hero-title">
+                B2B 產品行銷與業務開發<br>
+                <span class="gradient-text">AI 賦能實戰班</span>
+            </h1>
+            <p class="hero-subtitle">
+                6 小時掌握 AI 核心技能<br>
+                從客戶研究、數據分析到競品情報，全面提升 B2B 銷售與行銷效率
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">5x</span>
+                    <span class="stat-label">客戶研究效率</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number">80%</span>
+                    <span class="stat-label">報告時間節省</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number">3x</span>
+                    <span class="stat-label">提案速度</span>
+                </div>
+            </div>
+            <div class="hero-info">
+                <div class="info-item">
+                    <span class="info-icon">&#128197;</span>
+                    <span>2026 年 3 月 31 日（星期二）</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon">&#9200;</span>
+                    <span>09:00 - 16:00（共 6 小時）</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon">&#128205;</span>
+                    <span>和椿科技內湖訓練教室（捷運港墘站）</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pain Points -->
+    <section class="pain-points">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">這些困境，是不是很熟悉？</h2>
+            </div>
+            <div class="pain-grid">
+                <div class="pain-item">
+                    <div class="pain-icon">&#128269;</div>
+                    <p>客戶拜訪前研究花太多時間，資料散落各處整理不易</p>
+                </div>
+                <div class="pain-item">
+                    <div class="pain-icon">&#128203;</div>
+                    <p>規格書比較要一頁一頁翻，多品牌對比費時費力</p>
+                </div>
+                <div class="pain-item">
+                    <div class="pain-icon">&#128202;</div>
+                    <p>銷售數據分析等 IT 部門整理，自己手動拉報表耗時</p>
+                </div>
+                <div class="pain-item">
+                    <div class="pain-icon">&#128221;</div>
+                    <p>報價簡報每次重做，排版調整花的時間比寫內容還多</p>
+                </div>
+                <div class="pain-item">
+                    <div class="pain-icon">&#128450;</div>
+                    <p>競品資訊散在各人電腦裡，沒有統一的知識庫</p>
+                </div>
+                <div class="pain-item">
+                    <div class="pain-icon">&#129302;</div>
+                    <p>聽說 AI 很厲害，但不確定 B2B 場景怎麼用</p>
+                </div>
+            </div>
+            <div class="solution-bridge">
+                <div class="bridge-text">
+                    <span class="highlight">問題不是你不夠努力</span><br>
+                    而是 B2B 銷售最需要的，是少一點重複工作、多一點客戶對話時間
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">課程特色</span>
+                <h2 class="section-title">專為 B2B 業務與行銷團隊設計</h2>
+                <p class="section-desc">不只是學 AI 工具，更是建立一套提升銷售效率的工作方式</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">&#127919;</div>
+                    <h3>教學 &rarr; 操作 &rarr; 討論</h3>
+                    <p>每小時循環，確保學完立即會用</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#9881;</div>
+                    <h3>B2B 自動化設備實戰情境</h3>
+                    <p>所有案例都以 PCB 切板機、自動化設備場景設計</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#128736;</div>
+                    <h3>用和椿的資料練習</h3>
+                    <p>模擬銷售數據、規格書，貼近真實工作場景</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">&#129302;</div>
+                    <h3>帶走 NotebookLM + Gem</h3>
+                    <p>課堂建立競品知識庫與客製化 AI 幕僚</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Objectives -->
+    <section id="objectives" class="objectives">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">學習目標</span>
+                <h2 class="section-title">課程結束後，你將能夠</h2>
+            </div>
+            <div class="objectives-grid">
+                <div class="objective-card">
+                    <div class="objective-number">01</div>
+                    <div class="objective-content">
+                        <h3>快速客戶研究與市場調研</h3>
+                        <p>用 AI 在 10 分鐘內完成客戶背景調查與市場趨勢分析</p>
+                        <ul class="objective-list">
+                            <li>Perplexity 即時市場搜尋</li>
+                            <li>Manus 潛在客戶名單生成</li>
+                            <li>Deep Research 深度研究報告</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="objective-card">
+                    <div class="objective-number">02</div>
+                    <div class="objective-content">
+                        <h3>數據分析與文件萃取</h3>
+                        <p>上傳 Excel / PDF，AI 自動分析趨勢、整理規格對照表</p>
+                        <ul class="objective-list">
+                            <li>銷售數據視覺化分析</li>
+                            <li>多品牌規格書比較</li>
+                            <li>數據&#8594;簡報自動轉換</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="objective-card">
+                    <div class="objective-number">03</div>
+                    <div class="objective-content">
+                        <h3>掌握 Prompt 黃金三角</h3>
+                        <p>學會角色 &#215; 情境 &#215; 期望的指令框架</p>
+                        <ul class="objective-list">
+                            <li>B2B 專用指令範本</li>
+                            <li>指令優化器實作</li>
+                            <li>不同場景的指令切換</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="objective-card">
+                    <div class="objective-number">04</div>
+                    <div class="objective-content">
+                        <h3>建立部門競品知識庫</h3>
+                        <p>用 NotebookLM 建立團隊共用的競品情報庫</p>
+                        <ul class="objective-list">
+                            <li>上傳規格書即時比較</li>
+                            <li>對話式競品分析</li>
+                            <li>自動生成對照表</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="objective-card">
+                    <div class="objective-number">05</div>
+                    <div class="objective-content">
+                        <h3>打造客製化 AI 幕僚</h3>
+                        <p>用 ChatGPT Gems 建立專屬的競品分析與市場洞察助理</p>
+                        <ul class="objective-list">
+                            <li>設定角色與知識</li>
+                            <li>團隊成員共用</li>
+                            <li>持續迭代優化</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Curriculum -->
+    <section id="curriculum" class="curriculum">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">課程大綱</span>
+                <h2 class="section-title">6 小時完整學習路徑</h2>
+            </div>
+
+            <div class="schedule-section">
+                <h3 class="schedule-title">&#127749; 上午場（09:00 - 12:00）</h3>
+
+                <div class="curriculum-card">
+                    <span class="time-badge">09:00 - 09:50</span>
+                    <div class="card-main">
+                        <h4>第一單元：AI 趨勢與產業應用</h4>
+                        <ul>
+                            <li>ChatGPT、Gemini、Claude 等大語言模型最新發展</li>
+                            <li>與和椿科技相關的 AI + 自動化設備趨勢（SMT / AMR）</li>
+                            <li>B2B 產業 AI 應用案例：業務開發、客戶研究、競品分析</li>
+                            <li>6 大工具定位與適用場景</li>
+                            <li>資安注意事項：敏感欄位用代號替代</li>
+                        </ul>
+                    </div>
+                    <div class="card-output">&#128161; 學員產出：體感理解「指令品質決定 AI 回覆品質」</div>
+                </div>
+
+                <div class="curriculum-card">
+                    <span class="time-badge">10:00 - 10:50</span>
+                    <div class="card-main">
+                        <h4>第二單元：Prompt 黃金公式與指令優化</h4>
+                        <ul>
+                            <li>黃金三角框架：角色（你是誰）&#215; 情境（背景脈絡）&#215; 期望（我要什麼）</li>
+                            <li>進階技巧：限制條件、輸出格式、Few-shot 範例</li>
+                            <li>示範：阿峰自製的 Gemini 架構指令優化器</li>
+                        </ul>
+                    </div>
+                    <div class="card-output">&#128161; 學員產出：一個屬於自己工作場景的完整 Prompt + 優化器體驗</div>
+                </div>
+
+                <div class="curriculum-card">
+                    <span class="time-badge">11:00 - 12:00</span>
+                    <div class="card-main">
+                        <h4>第三單元：AI 深度市調與客戶開發</h4>
+                        <ul>
+                            <li>Deep Research 概念：深度研究與一般搜尋的差異</li>
+                            <li>Perplexity 實戰：即時搜尋 + 來源標註，快速情報蒐集</li>
+                            <li>Manus 客戶開發：自動爬取目標客戶資料</li>
+                            <li>實際案例：找中南部 PCB / 半導體工廠的採購負責人</li>
+                        </ul>
+                    </div>
+                    <div class="card-output">&#128161; 學員產出：一份市場趨勢摘要 + 一份潛在客戶名單</div>
+                </div>
+            </div>
+
+            <div class="lunch-break">
+                <span>&#127869; 午休（12:00 - 13:00）</span>
+            </div>
+
+            <div class="schedule-section">
+                <h3 class="schedule-title">&#9728; 下午場（13:00 - 16:00）</h3>
+
+                <div class="curriculum-card">
+                    <span class="time-badge">13:00 - 13:50</span>
+                    <div class="card-main">
+                        <h4>第四單元：數據分析與文件萃取 + 數據&#8594;簡報</h4>
+                        <ul>
+                            <li>上傳 Excel / CSV &#8594; AI 分析 &#8594; 視覺化圖表</li>
+                            <li>PDF / Word 文件萃取：摘要、比較、翻譯（原廠規格書情境）</li>
+                            <li>敏感資料處理：欄位替代法（客戶名 &#8594; A / B / C / D）</li>
+                            <li>數據&#8594;簡報自動化：分析結果快速轉成 3 頁商業簡報</li>
+                        </ul>
+                    </div>
+                    <div class="card-output">&#128161; 學員產出：銷售分析報告 + 規格比較表 + AI 生成簡報</div>
+                </div>
+
+                <div class="curriculum-card">
+                    <span class="time-badge">14:00 - 14:50</span>
+                    <div class="card-main">
+                        <h4>第五單元：競品分析與知識庫 + Gems AI 幕僚</h4>
+                        <ul>
+                            <li>NotebookLM 核心概念：你的資料、不會亂編、免費</li>
+                            <li>競品分析應用：上傳多份競品規格書 &#8594; 即時比較</li>
+                            <li>部門知識庫：產品資料、客戶 FAQ、報價基準全部匯入</li>
+                            <li>ChatGPT Gems：建立專屬 AI 幕僚，團隊共用</li>
+                        </ul>
+                    </div>
+                    <div class="card-output">&#128161; 學員產出：NotebookLM 競品知識庫 + 競品對照表 + ChatGPT Gem</div>
+                </div>
+
+                <div class="curriculum-card">
+                    <span class="time-badge">15:00 - 16:00</span>
+                    <div class="card-main">
+                        <h4>第六單元：實戰驗收 &#8212; 30 分鐘極速攻防</h4>
+                        <ul>
+                            <li>任務：對目標客戶做背景調查（Perplexity / Manus）</li>
+                            <li>任務：分析客戶需求與痛點（ChatGPT / Gemini）</li>
+                            <li>任務：產出 3-5 頁提案簡報初稿</li>
+                            <li>任務：準備 3 個拜訪時要問的關鍵問題</li>
+                            <li>成果分享 + 老師點評 + 課程總結</li>
+                        </ul>
+                    </div>
+                    <div class="card-output">&#128161; 學員產出：完整的「客戶研究 &#8594; 提案」流程成果</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools -->
+    <section id="tools" class="tools">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">工具介紹</span>
+                <h2 class="section-title">課程使用的 AI 工具</h2>
+            </div>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-logo">&#128172;</div>
+                    <h3>ChatGPT</h3>
+                    <p>最普及的 AI 助手，數據分析、提案文案、Gems 建立</p>
+                    <span class="tool-use">指令教學、數據分析、Gems</span><br>
+                    <a href="https://chatgpt.com" target="_blank" class="tool-link">chatgpt.com</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-logo">&#10024;</div>
+                    <h3>Gemini</h3>
+                    <p>Google 生態系整合、Deep Research、Canvas 簡報製作</p>
+                    <span class="tool-use">指令教學、Deep Research、Canvas</span><br>
+                    <a href="https://gemini.google.com" target="_blank" class="tool-link">gemini.google.com</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-logo">&#128270;</div>
+                    <h3>Perplexity</h3>
+                    <p>AI 搜尋引擎，搜尋結果附引用來源，適合快速情報蒐集</p>
+                    <span class="tool-use">深度市場調研、即時搜尋</span><br>
+                    <a href="https://www.perplexity.ai" target="_blank" class="tool-link">perplexity.ai</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-logo">&#127760;</div>
+                    <h3>Manus</h3>
+                    <p>自動爬取目標客戶資料，每天 300 點免費</p>
+                    <span class="tool-use">客戶開發研究、自動爬取資料</span><br>
+                    <a href="https://manus.im" target="_blank" class="tool-link">manus.im</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-logo">&#128211;</div>
+                    <h3>NotebookLM</h3>
+                    <p>Google 文件研究助手，上傳即分析，不會亂編</p>
+                    <span class="tool-use">競品分析、部門知識庫</span><br>
+                    <a href="https://notebooklm.google.com" target="_blank" class="tool-link">notebooklm.google.com</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-logo">&#129302;</div>
+                    <h3>Claude AI</h3>
+                    <p>長文處理王，邏輯條理強，深度分析</p>
+                    <span class="tool-use">長文處理、深度分析</span><br>
+                    <a href="https://claude.ai" target="_blank" class="tool-link">claude.ai</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instructor -->
+    <section id="instructor" class="instructor">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">講師介紹</span>
+                <h2 class="section-title">黃敬峰（AI 峰哥）</h2>
+            </div>
+            <div class="instructor-content">
+                <p class="instructor-title">企業 AI 實戰培訓專家</p>
+                <p class="instructor-bio">
+                    台灣領先的企業 AI 實戰培訓專家，自生成式 AI 元年起，深入研究各種 AI 工具，擅長將技術轉化為企業可落地的實戰方案。教學風格強調「會用、懂用、好用、每天用」，讓學員不只是聽，還要動手做、帶著成果離開。
+                </p>
+                <div class="instructor-stats">
+                    <div class="stat">
+                        <span class="stat-number">400+</span>
+                        <span class="stat-label">企業與機關合作</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">300+</span>
+                        <span class="stat-label">場次課程</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">10,000+</span>
+                        <span class="stat-label">學員人次</span>
+                    </div>
+                </div>
+                <div class="instructor-clients">
+                    <h4>服務客戶（部分）</h4>
+                    <p>華碩電腦、南山人壽、蝦皮電商、裕隆日產、日商 TOTO、群益投信、英業達、國泰人壽、行政院數位發展部、經濟部能源署、金管會檢查局、雲林縣青年創業基地、外貿協會...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>B2B 產品行銷與業務開發 AI 賦能實戰班</p>
+                <p>專為和椿科技股份有限公司設計</p>
+                <p>2026 年 3 月 31 日（星期二）09:00 - 16:00</p>
+            </div>
+            <div class="footer-links">
+                <a href="https://www.autolab.cloud" target="_blank">Autolab 官網</a>
+                <a href="https://blog.autolab.cloud" target="_blank">部落格</a>
+                <a href="mailto:ai@autolab.cloud">ai@autolab.cloud</a>
+            </div>
+            <div class="footer-instructor">
+                <p>講師：黃敬峰（AI 峰哥）｜交點文化股份有限公司</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
