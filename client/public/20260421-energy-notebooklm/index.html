@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NotebookLM 深度應用 — 課後複習</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg-dark: #0A1628;
+  --bg-card: #0F1D32;
+  --bg-card-hover: #142540;
+  --primary: #00D4FF;
+  --accent: #FF6B35;
+  --text-white: #FFFFFF;
+  --text-gray: #C7C7CC;
+  --text-muted: #8A8F98;
+  --border: rgba(0, 212, 255, 0.15);
+  --green: #34C759;
+  --yellow: #FFD60A;
+  --red: #FF3B30;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+body {
+  font-family: 'Inter', 'Noto Sans TC', sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-white);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(10, 22, 40, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.navbar-links a {
+  color: var(--text-gray);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.navbar-links a:hover { color: var(--primary); }
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-white);
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* ===== LAYOUT ===== */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+section {
+  padding: 80px 0;
+}
+
+section + section {
+  border-top: 1px solid var(--border);
+}
+
+.section-label {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+
+.section-desc {
+  color: var(--text-gray);
+  font-size: 16px;
+  margin-bottom: 40px;
+  max-width: 640px;
+}
+
+/* ===== HERO ===== */
+.hero {
+  padding: 140px 0 80px;
+  text-align: center;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.25);
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 999px;
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  font-size: 42px;
+  font-weight: 900;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.hero h1 span { color: var(--primary); }
+
+.hero p {
+  color: var(--text-gray);
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.hero-date {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-top: 16px;
+}
+
+/* ===== TOOL CARDS ===== */
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.tool-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  text-align: center;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.tool-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary);
+}
+
+.tool-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.tool-card h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.tool-card p {
+  color: var(--text-gray);
+  font-size: 13px;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.tool-btn {
+  display: inline-block;
+  background: rgba(0, 212, 255, 0.1);
+  color: var(--primary);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  padding: 8px 20px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.tool-btn:hover {
+  background: var(--primary);
+  color: var(--bg-dark);
+}
+
+/* ===== PROMPT SECTION ===== */
+.prompt-group { margin-bottom: 48px; }
+.prompt-group:last-child { margin-bottom: 0; }
+
+.prompt-group-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding-left: 16px;
+  border-left: 3px solid var(--accent);
+}
+
+.prompt-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+.prompt-text {
+  flex: 1;
+  font-size: 14px;
+  color: var(--text-gray);
+  line-height: 1.7;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+.copy-btn {
+  flex-shrink: 0;
+  background: rgba(0, 212, 255, 0.1);
+  color: var(--primary);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+  margin-top: 2px;
+}
+
+.copy-btn:hover {
+  background: var(--primary);
+  color: var(--bg-dark);
+}
+
+.copy-btn.copied {
+  background: var(--green);
+  color: #fff;
+  border-color: var(--green);
+}
+
+/* ===== SOP SECTION ===== */
+.sop-steps {
+  display: grid;
+  gap: 20px;
+}
+
+.sop-step {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.sop-num {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(0, 212, 255, 0.12);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.sop-content h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.sop-content p {
+  color: var(--text-gray);
+  font-size: 14px;
+}
+
+/* ===== TRAFFIC LIGHT SECTION ===== */
+.traffic-lights {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.traffic-item {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.traffic-light {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.light-green { background: var(--green); color: #fff; }
+.light-yellow { background: var(--yellow); color: #1a1a1a; }
+.light-red { background: var(--red); color: #fff; }
+
+.traffic-item h4 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.traffic-item p {
+  color: var(--text-gray);
+  font-size: 14px;
+}
+
+.traffic-item-green { border-left: 4px solid var(--green); }
+.traffic-item-yellow { border-left: 4px solid var(--yellow); }
+.traffic-item-red { border-left: 4px solid var(--red); }
+
+.checklist {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+}
+
+.checklist h4 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 14px;
+  color: var(--text-gray);
+}
+
+.checklist-item:last-child { border-bottom: none; }
+
+.checklist-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+/* ===== FLOW SECTION ===== */
+.flow-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+.flow-step {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  text-align: center;
+  min-width: 180px;
+  transition: border-color 0.2s;
+}
+
+.flow-step:hover { border-color: var(--primary); }
+
+.flow-step-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.flow-step-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+
+.flow-step-desc {
+  font-size: 13px;
+  color: var(--text-gray);
+}
+
+.flow-arrow {
+  font-size: 28px;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* ===== DOWNLOAD SECTION ===== */
+.download-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px;
+  text-align: center;
+}
+
+.download-box h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.download-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 28px;
+  text-align: left;
+}
+
+.download-list li {
+  color: var(--text-gray);
+  font-size: 14px;
+  padding: 10px 16px;
+  background: rgba(0, 212, 255, 0.04);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.download-list li::before {
+  content: "\25B6";
+  color: var(--primary);
+  font-size: 10px;
+}
+
+.download-btn {
+  display: inline-block;
+  background: var(--primary);
+  color: var(--bg-dark);
+  padding: 14px 36px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.download-btn:hover {
+  background: #33ddff;
+  transform: translateY(-2px);
+}
+
+/* ===== INSTRUCTOR ===== */
+.instructor-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.instructor-avatar {
+  flex-shrink: 0;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--bg-dark);
+}
+
+.instructor-info h3 {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.instructor-info .instructor-subtitle {
+  color: var(--primary);
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.instructor-info .instructor-stats {
+  color: var(--text-gray);
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.instructor-info .instructor-contact {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.instructor-info .instructor-contact a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.instructor-info .instructor-contact a:hover {
+  text-decoration: underline;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 0;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.footer a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.footer a:hover { text-decoration: underline; }
+
+/* ===== MOBILE NAV ===== */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 64px;
+  left: 0;
+  right: 0;
+  background: rgba(10, 22, 40, 0.98);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 16px 24px;
+  z-index: 999;
+}
+
+.mobile-menu.active { display: block; }
+
+.mobile-menu a {
+  display: block;
+  color: var(--text-gray);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.mobile-menu a:last-child { border-bottom: none; }
+.mobile-menu a:hover { color: var(--primary); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .navbar-links { display: none; }
+  .hamburger { display: block; }
+
+  .hero h1 { font-size: 28px; }
+  .hero p { font-size: 15px; }
+  .section-title { font-size: 22px; }
+
+  .tool-grid { grid-template-columns: 1fr 1fr; }
+
+  .prompt-item {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .copy-btn { align-self: flex-end; }
+
+  .flow-container { flex-direction: column; }
+  .flow-arrow { transform: rotate(90deg); }
+
+  .instructor-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 28px;
+  }
+
+  .download-list { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .tool-grid { grid-template-columns: 1fr; }
+  .container { padding: 0 16px; }
+  section { padding: 60px 0; }
+  .hero { padding: 110px 0 60px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+  <div class="navbar-brand">NotebookLM &#28145;&#24230;&#25033;&#29992; &#8212; &#35506;&#24460;&#35079;&#32722;</div>
+  <div class="navbar-links">
+    <a href="#tools">工具連結</a>
+    <a href="#prompts">Prompt 範本</a>
+    <a href="#sop">品質查核</a>
+    <a href="#safety">安全守則</a>
+    <a href="#flow">串聯心法</a>
+    <a href="#download">素材下載</a>
+    <a href="#instructor">講師</a>
+  </div>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="&#36984;&#21934;">&#9776;</button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#tools" onclick="closeMenu()">工具連結</a>
+  <a href="#prompts" onclick="closeMenu()">Prompt 範本</a>
+  <a href="#sop" onclick="closeMenu()">品質查核</a>
+  <a href="#safety" onclick="closeMenu()">安全守則</a>
+  <a href="#flow" onclick="closeMenu()">串聯心法</a>
+  <a href="#download" onclick="closeMenu()">素材下載</a>
+  <a href="#instructor" onclick="closeMenu()">講師</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">&#9670; NotebookLM &#215; AI &#24037;&#20855;&#20018;&#32879;&#23526;&#25136;</div>
+    <h1><span>&#35506;&#24460;&#35079;&#32722;</span>&#36039;&#28304;</h1>
+    <p>&#25152;&#26377;&#24037;&#20855;&#12289;Prompt&#12289;&#32032;&#26448;&#65292;&#19968;&#38913;&#25630;&#23450;</p>
+    <div class="hero-date">&#33021;&#28304;&#32626; &#47; &#33021;&#31185;&#36774; &#9474; 2026 &#47; 4 &#47; 21</div>
+  </div>
+</section>
+
+<!-- ===== TOOLS ===== -->
+<section id="tools">
+  <div class="container">
+    <div class="section-label">AI Tools</div>
+    <h2 class="section-title">&#24037;&#20855;&#36899;&#32080;&#21312;</h2>
+    <p class="section-desc">&#35506;&#22530;&#20013;&#20351;&#29992;&#30340;&#26680;&#24515; AI &#24037;&#20855;&#65292;&#40670;&#25802;&#21363;&#21487;&#38283;&#22987;&#32244;&#32722;</p>
+
+    <div class="tool-grid">
+      <div class="tool-card">
+        <div class="tool-icon" style="background: rgba(0,212,255,0.12); color: var(--primary);">N</div>
+        <h3>NotebookLM</h3>
+        <p>Google &#30693;&#35672;&#24235;&#21161;&#25163;&#65292;&#19978;&#20659;&#25991;&#20214;&#21363;&#21487;&#23565;&#35441;&#20998;&#26512;</p>
+        <a href="https://notebooklm.google.com" target="_blank" rel="noopener" class="tool-btn">&#38283;&#21855;&#24037;&#20855; &#8594;</a>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-icon" style="background: rgba(255,107,53,0.12); color: var(--accent);">P</div>
+        <h3>Perplexity</h3>
+        <p>AI &#25628;&#23563;&#24341;&#25806;&#65292;&#21363;&#26178;&#26597;&#35426;&#26368;&#26032;&#36039;&#26009;&#33287;&#30740;&#31350;</p>
+        <a href="https://www.perplexity.ai" target="_blank" rel="noopener" class="tool-btn">&#38283;&#21855;&#24037;&#20855; &#8594;</a>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-icon" style="background: rgba(52,199,89,0.12); color: var(--green);">C</div>
+        <h3>ChatGPT</h3>
+        <p>&#33836;&#29992;&#25913;&#23531;&#21161;&#25163;&#65292;&#28516;&#31295;&#12289;&#32763;&#35695;&#12289;&#25972;&#29702;&#25991;&#20214;</p>
+        <a href="https://chatgpt.com" target="_blank" rel="noopener" class="tool-btn">&#38283;&#21855;&#24037;&#20855; &#8594;</a>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-icon" style="background: rgba(255,214,10,0.12); color: var(--yellow);">G</div>
+        <h3>Gemini</h3>
+        <p>Google &#22810;&#27169;&#24907; AI&#65292;&#25991;&#23383;&#12289;&#22294;&#29255;&#12289;&#31243;&#24335;&#30342;&#21487;&#34389;&#29702;</p>
+        <a href="https://gemini.google.com" target="_blank" rel="noopener" class="tool-btn">&#38283;&#21855;&#24037;&#20855; &#8594;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROMPTS ===== -->
+<section id="prompts">
+  <div class="container">
+    <div class="section-label">Prompt Templates</div>
+    <h2 class="section-title">Prompt &#31684;&#26412;&#21312;</h2>
+    <p class="section-desc">&#35506;&#22530;&#20013;&#32244;&#32722;&#36942;&#30340; Prompt&#65292;&#40670;&#25802;&#12300;&#35079;&#35069;&#12301;&#21363;&#21487;&#30452;&#25509;&#36028;&#19978;&#20351;&#29992;</p>
+
+    <!-- NotebookLM 問答技巧 -->
+    <div class="prompt-group">
+      <h3 class="prompt-group-title">NotebookLM &#21839;&#31572;&#25216;&#24039;</h3>
+
+      <div class="prompt-item">
+        <div class="prompt-text">&#35531;&#29992; 3 &#20491;&#37325;&#40670;&#25688;&#35201;&#36889;&#20221;&#22577;&#21578;&#65292;&#27599;&#20491;&#37325;&#40670;&#38468;&#19978;&#24341;&#29992;&#27573;&#33853;</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">&#35079;&#35069;</button>
+      </div>
+
+      <div class="prompt-item">
+        <div class="prompt-text">2025 &#24180;&#20877;&#29983;&#33021;&#28304;&#30446;&#27161;&#35037;&#32622;&#23481;&#37327;&#26159;&#22810;&#23569; GW&#65311;&#35531;&#24341;&#29992;&#21407;&#25991;</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">&#35079;&#35069;</button>
+      </div>
+
+      <div class="prompt-item">
+        <div class="prompt-text">&#22826;&#38525;&#33021;&#21644;&#39080;&#21147;&#30340;&#30446;&#27161;&#24046;&#36317;&#22810;&#23569;&#65311;&#35531;&#20132;&#21449;&#24341;&#29992;&#22810;&#20491;&#27573;&#33853;</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">&#35079;&#35069;</button>
+      </div>
+
+      <div class="prompt-item">
+        <div class="prompt-text">&#35531;&#25972;&#29702;&#36889;&#20221;&#22577;&#21578;&#30340; FAQ&#65292;&#21015;&#20986; 10 &#20491;&#26368;&#21487;&#33021;&#34987;&#21839;&#21040;&#30340;&#21839;&#38988;</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">&#35079;&#35069;</button>
+      </div>
+    </div>
+
+    <!-- NotebookLM 產出指令 -->
+    <div class="prompt-group">
+      <h3 class="prompt-group-title">NotebookLM &#29986;&#20986;&#25351;&#20196;</h3>
+
+      <div class="prompt-item">
+        <div class="prompt-text">&#35531;&#26681;&#25818;&#30693;&#35672;&#24235;&#20013;&#30340;&#25991;&#20214;&#65292;&#20570;&#19968;&#20221; 10 &#38913;&#31777;&#22577;&#22823;&#32177;&#65292;&#27599;&#38913;&#21547;&#27161;&#38988;&#12289;3 &#20491;&#37325;&#40670;&#12289;1 &#20491;&#25976;&#25818;&#20304;&#35657;</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">&#35079;&#35069;</button>
+      </div>
+
+      <div class="prompt-item">
+        <div class="prompt-text">&#35531;&#29986;&#20986;&#19968;&#20221; Briefing Doc&#65292;&#29992;&#19968;&#38913;&#31934;&#33775;&#21576;&#29694;&#36889;&#20221;&#22577;&#21578;&#30340;&#38364;&#37749;&#32080;&#35542;</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">&#35079;&#35069;</button>
+      </div>
+
+      <div class="prompt-item">
+        <div class="prompt-text">&#35531;&#29986;&#20986;&#24478; 2016 &#21040; 2026 &#24180;&#30340;&#25919;&#31574;&#25512;&#21205; Timeline&#65292;&#27161;&#27880;&#27599;&#24180;&#37324;&#31243;&#30865;</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">&#35079;&#35069;</button>
+      </div>
+    </div>
+
+    <!-- ChatGPT 改寫潤稿 -->
+    <div class="prompt-group">
+      <h3 class="prompt-group-title">ChatGPT &#25913;&#23531;&#28516;&#31295;</h3>
+
+      <div class="prompt-item">
+        <div class="prompt-text">&#35531;&#23559;&#20197;&#19979;&#20998;&#26512;&#25972;&#29702;&#25104;&#27491;&#24335;&#30340;&#20844;&#25991;&#26684;&#24335;&#22577;&#21578;&#65292;&#35486;&#35519;&#35201;&#31526;&#21512;&#25919;&#24220;&#27231;&#38364;&#29992;&#35486;&#65306;[&#36028;&#19978; NotebookLM &#29986;&#20986;]</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">&#35079;&#35069;</button>
+      </div>
+
+      <div class="prompt-item">
+        <div class="prompt-text">&#35531;&#23559;&#36889;&#20221;&#33521;&#25991;&#25688;&#35201;&#32763;&#35695;&#25104;&#32321;&#39636;&#20013;&#25991;&#65292;&#20006;&#25972;&#29702;&#25104; 3 &#38913;&#20013;&#25991;&#25688;&#35201;&#65292;&#21547;&#38364;&#37749;&#25976;&#25818;&#34920;&#26684;</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">&#35079;&#35069;</button>
+      </div>
+
+      <div class="prompt-item">
+        <div class="prompt-text">&#35531;&#29992; 5W1H &#26684;&#24335;&#37325;&#26032;&#25972;&#29702;&#36889;&#20221;&#26371;&#35696;&#32000;&#37636;</div>
+        <button class="copy-btn" onclick="copyPrompt(this)">&#35079;&#35069;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SOP ===== -->
+<section id="sop">
+  <div class="container">
+    <div class="section-label">Quality Check</div>
+    <h2 class="section-title">&#21697;&#36074;&#26597;&#26680; SOP</h2>
+    <p class="section-desc">AI &#29986;&#20986;&#20839;&#23481;&#24460;&#65292;&#35531;&#20381;&#24207;&#22519;&#34892;&#19977;&#27493;&#39519;&#26597;&#26680;</p>
+
+    <div class="sop-steps">
+      <div class="sop-step">
+        <div class="sop-num">1</div>
+        <div class="sop-content">
+          <h4>&#20107;&#23526;&#26680;&#26597;</h4>
+          <p>&#27298;&#26597;&#25976;&#23383;&#12289;&#27861;&#35215;&#26781;&#34399;&#12289;&#26085;&#26399;&#26159;&#21542;&#27491;&#30906;&#12290;&#33287;&#21407;&#22987;&#25991;&#20214;&#20132;&#21449;&#27604;&#23565;&#65292;&#30906;&#20445;&#27794;&#26377;&#24187;&#35258;&#29986;&#29983;&#30340;&#37679;&#35492;&#25976;&#25818;&#12290;</p>
+        </div>
+      </div>
+
+      <div class="sop-step">
+        <div class="sop-num">2</div>
+        <div class="sop-content">
+          <h4>&#37007;&#36655;&#26680;&#26597;</h4>
+          <p>&#27298;&#26597;&#32080;&#35542;&#26159;&#21542;&#26377;&#35542;&#25818;&#25903;&#25744;&#12290;&#30906;&#35469;&#22240;&#26524;&#38364;&#20418;&#12289;&#25976;&#25818;&#36264;&#21218;&#25551;&#36848;&#33287;&#23526;&#38555;&#25976;&#23383;&#19968;&#33268;&#12290;</p>
+        </div>
+      </div>
+
+      <div class="sop-step">
+        <div class="sop-num">3</div>
+        <div class="sop-content">
+          <h4>&#26684;&#24335;&#26680;&#26597;</h4>
+          <p>&#27298;&#26597;&#35486;&#27683;&#12289;&#29992;&#23383;&#26159;&#21542;&#31526;&#21512;&#27231;&#38364;&#24931;&#20363;&#12290;&#30906;&#35469;&#20844;&#25991;&#26684;&#24335;&#12289;&#23560;&#26377;&#21517;&#35422;&#12289;&#25976;&#23383;&#21934;&#20301;&#30342;&#27491;&#30906;&#12290;</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SAFETY ===== -->
+<section id="safety">
+  <div class="container">
+    <div class="section-label">Security Guidelines</div>
+    <h2 class="section-title">AI &#20351;&#29992;&#23433;&#20840;&#23432;&#21063;</h2>
+    <p class="section-desc">&#20351;&#29992; AI &#24037;&#20855;&#21069;&#65292;&#35531;&#20808;&#30906;&#35469;&#36039;&#26009;&#20998;&#32026;&#33287;&#33067;&#25935;&#29376;&#24907;</p>
+
+    <div class="traffic-lights">
+      <div class="traffic-item traffic-item-green">
+        <div class="traffic-light light-green">&#10003;</div>
+        <div>
+          <h4>&#32160;&#29128; &#8212; &#21487;&#20197;&#20351;&#29992; AI</h4>
+          <p>&#24050;&#20844;&#38283;&#36039;&#35338;&#65306;&#25919;&#24220;&#20844;&#22577;&#12289;&#24050;&#30332;&#24067;&#26032;&#32862;&#31295;&#12289;&#20844;&#38283;&#32113;&#35336;&#36039;&#26009;&#12289;&#24050;&#20986;&#29256;&#30740;&#31350;&#22577;&#21578;</p>
+        </div>
+      </div>
+
+      <div class="traffic-item traffic-item-yellow">
+        <div class="traffic-light light-yellow">!</div>
+        <div>
+          <h4>&#40643;&#29128; &#8212; &#33067;&#25935;&#24460;&#21487;&#20351;&#29992;</h4>
+          <p>&#20839;&#37096;&#25991;&#20214;&#33067;&#25935;&#24460;&#21487;&#20351;&#29992;&#65306;&#31227;&#38500;&#20491;&#20154;&#36039;&#26009;&#12289;&#20844;&#21496;&#20839;&#37096;&#32232;&#34399;&#12289;&#26410;&#20844;&#38283;&#26371;&#35696;&#32048;&#31680;&#24460;&#26041;&#21487;&#20351;&#29992;</p>
+        </div>
+      </div>
+
+      <div class="traffic-item traffic-item-red">
+        <div class="traffic-light light-red">&#10007;</div>
+        <div>
+          <h4>&#32005;&#29128; &#8212; &#31105;&#27490;&#20351;&#29992; AI</h4>
+          <p>&#23494;&#20214; / &#20491;&#36039; / &#26410;&#20844;&#38283;&#25919;&#31574;&#65306;&#20219;&#20309;&#28041;&#21450;&#22283;&#23478;&#27231;&#23494;&#12289;&#20491;&#20154;&#36523;&#20998;&#36039;&#35338;&#12289;&#23578;&#26410;&#20844;&#24067;&#30340;&#25919;&#31574;&#33609;&#26696;</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="checklist">
+      <h4>&#33067;&#25935;&#27298;&#26597;&#34920; &#8212; &#19978;&#20659;&#21069;&#35531;&#36880;&#38917;&#30906;&#35469;</h4>
+      <label class="checklist-item">
+        <input type="checkbox">
+        <span>&#24050;&#31227;&#38500;&#25152;&#26377;&#20491;&#20154;&#22995;&#21517;&#12289;&#36523;&#20998;&#35388;&#23383;&#34399;&#12289;&#38651;&#35441;&#34399;&#30908;</span>
+      </label>
+      <label class="checklist-item">
+        <input type="checkbox">
+        <span>&#24050;&#31227;&#38500;&#20839;&#37096;&#32068;&#32340;&#32232;&#34399;&#33287;&#27231;&#38364;&#20839;&#37096;&#20195;&#30908;</span>
+      </label>
+      <label class="checklist-item">
+        <input type="checkbox">
+        <span>&#24050;&#31227;&#38500;&#26410;&#20844;&#38283;&#30340;&#38928;&#31639;&#25976;&#23383;&#33287;&#27770;&#31574;&#32048;&#31680;</span>
+      </label>
+      <label class="checklist-item">
+        <input type="checkbox">
+        <span>&#24050;&#31227;&#38500;&#21512;&#32004;&#20839;&#23481;&#12289;&#24288;&#21830;&#21517;&#31281;&#33287;&#22577;&#20729;&#37329;&#38989;</span>
+      </label>
+      <label class="checklist-item">
+        <input type="checkbox">
+        <span>&#24050;&#30906;&#35469;&#25991;&#20214;&#28961;&#12300;&#23494;&#12301;&#12300;&#38480;&#38321;&#12301;&#12300;&#20839;&#37096;&#20351;&#29992;&#12301;&#31561;&#27161;&#35352;</span>
+      </label>
+      <label class="checklist-item">
+        <input type="checkbox">
+        <span>&#24050;&#30906;&#35469;&#20840;&#25991;&#28961;&#20219;&#20309;&#21487;&#35672;&#21029;&#20491;&#20154;&#36039;&#26009;&#65288;PII&#65289;</span>
+      </label>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FLOW ===== -->
+<section id="flow">
+  <div class="container">
+    <div class="section-label">Workflow</div>
+    <h2 class="section-title">&#20018;&#32879;&#24515;&#27861;</h2>
+    <p class="section-desc">&#19977;&#20491;&#24037;&#20855;&#21508;&#21496;&#20854;&#32887;&#65292;&#20018;&#36215;&#20358;&#23601;&#26159;&#23436;&#25972;&#30340; AI &#24037;&#20316;&#27969;&#31243;</p>
+
+    <div class="flow-container">
+      <div class="flow-step">
+        <div class="flow-step-label">Step 1 &#8212; &#26597;&#35426;</div>
+        <div class="flow-step-name">Perplexity</div>
+        <div class="flow-step-desc">&#21363;&#26178;&#25628;&#23563;&#26368;&#26032;&#36039;&#26009;</div>
+      </div>
+
+      <div class="flow-arrow">&#8594;</div>
+
+      <div class="flow-step">
+        <div class="flow-step-label">Step 2 &#8212; &#24409;&#25972;</div>
+        <div class="flow-step-name">NotebookLM</div>
+        <div class="flow-step-desc">&#19978;&#20659;&#25991;&#20214;&#28145;&#24230;&#20998;&#26512;</div>
+      </div>
+
+      <div class="flow-arrow">&#8594;</div>
+
+      <div class="flow-step">
+        <div class="flow-step-label">Step 3 &#8212; &#29986;&#20986;</div>
+        <div class="flow-step-name">ChatGPT</div>
+        <div class="flow-step-desc">&#25913;&#23531;&#28516;&#31295;&#25104;&#27491;&#24335;&#25991;&#20214;</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DOWNLOAD ===== -->
+<section id="download">
+  <div class="container">
+    <div class="section-label">Materials</div>
+    <h2 class="section-title">&#32032;&#26448;&#19979;&#36617;&#21312;</h2>
+    <p class="section-desc">&#25152;&#26377;&#35506;&#22530;&#32032;&#26448;&#24050;&#25171;&#21253;&#25918;&#22312; Google Drive&#65292;&#40670;&#25802;&#19979;&#36617;</p>
+
+    <div class="download-box">
+      <h3>&#35506;&#31243;&#32032;&#26448;&#36039;&#26009;&#22846;</h3>
+      <ul class="download-list">
+        <li>&#25945;&#23416;&#31777;&#22577;&#65288;2 &#20221; PPTX&#65289;</li>
+        <li>&#32244;&#32722;&#32032;&#26448; PDF&#65288;10 &#20221;&#65289;</li>
+        <li>&#20219;&#21209;&#21345;&#65288;10 &#20221;&#65289;</li>
+        <li>&#20018;&#32879;&#24037;&#20316;&#27969;&#65288;10 &#20221;&#65289;</li>
+      </ul>
+      <a href="https://drive.google.com/drive/folders/1BI0yoAOBUvj-dtRn2Xtl3veRvRU-A9Ku" target="_blank" rel="noopener" class="download-btn">&#38283;&#21855; Google Drive &#8594;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INSTRUCTOR ===== -->
+<section id="instructor">
+  <div class="container">
+    <div class="section-label">Instructor</div>
+    <h2 class="section-title">&#35611;&#24107;&#20171;&#32057;</h2>
+
+    <div class="instructor-card">
+      <div class="instructor-avatar">&#23792;</div>
+      <div class="instructor-info">
+        <h3>&#40643;&#25964;&#23792;&#65288;AI &#23792;&#21733;&#65289;</h3>
+        <div class="instructor-subtitle">&#20225;&#26989; AI &#23526;&#25136;&#22521;&#35347;&#23560;&#23478;</div>
+        <div class="instructor-stats">400+ &#20225;&#26989;&#21512;&#20316; &#9474; 300+ &#22580;&#27425; &#9474; 10,000+ &#23416;&#21729;</div>
+        <div class="instructor-contact">
+          <a href="mailto:ai@autolab.cloud">ai@autolab.cloud</a> &#9474;
+          <a href="https://www.autolab.cloud" target="_blank" rel="noopener">www.autolab.cloud</a> &#9474;
+          <a href="https://blog.autolab.cloud" target="_blank" rel="noopener">blog.autolab.cloud</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <p>&#20132; &#40670;&#25991;&#21270;&#32929;&#20221;&#26377;&#38480;&#20844;&#21496; &#9474; <a href="mailto:ai@autolab.cloud">ai@autolab.cloud</a></p>
+  </div>
+</footer>
+
+<script>
+/* Mobile menu toggle */
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('active');
+}
+
+function closeMenu() {
+  document.getElementById('mobileMenu').classList.remove('active');
+}
+
+/* Copy prompt */
+function copyPrompt(btn) {
+  var text = btn.previousElementSibling.textContent.trim();
+  navigator.clipboard.writeText(text).then(function() {
+    btn.textContent = '\u2713 \u5DF2\u8907\u88FD';
+    btn.classList.add('copied');
+    setTimeout(function() {
+      btn.textContent = '\u8907\u88FD';
+      btn.classList.remove('copied');
+    }, 2000);
+  }).catch(function() {
+    /* Fallback for older browsers */
+    var textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+    btn.textContent = '\u2713 \u5DF2\u8907\u88FD';
+    btn.classList.add('copied');
+    setTimeout(function() {
+      btn.textContent = '\u8907\u88FD';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>
